@@ -1,5 +1,5 @@
 rust-verson:
-	@echo "rust command-line utility versions:"
+	@echo "rust command-line utility versions: "
 	rustc --version
 	cargo --version
 	rustfmt --version
