@@ -21,5 +21,5 @@ test-quiet:
 run:
 	cargo run
 
-release:
+build-release:
 	cargo build --release
