@@ -1,0 +1,7 @@
+
+{
+  "name": "Rust Dev Container",
+  "features": {
+    "rust": "latest"
+  }
+}
