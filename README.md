@@ -28,3 +28,6 @@ Check .github/workflow
 ## CI/Github actions status
 [![Tests](https://github.com/rojala/test_rst_mod_/actions/workflows/test.yml/badge.svg)](https://github.com/rojala/test_rst_mod_/actions/workflows/test.yml)
 
+# 2nd Data Engineering with Rust Sandbox - bigdata with copilot
+see bigdata dir.
+copilot setup and try example coding with it.
