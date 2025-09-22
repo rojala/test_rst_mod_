@@ -16,7 +16,7 @@ Or create .devcontainer/devcontainer.json and add
 }
 ```
 
-# 1st rusttest with github CI pipeline
+# 1st rusttest with github CI pipeline / Data Engineering with Rust Sandbox
 
 In this lab, you will create a central Git repository to serve as a sandbox for code created in the Rust data engineering course. You will structure the repository, set up automation, and prepare documentation to support collaboration and code sharing during the course.
 
