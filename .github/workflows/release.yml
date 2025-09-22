@@ -3,14 +3,14 @@ name: Build binary release
 on:
   push:
     paths:
-      - 'Testrust/**'
+      - 'testrust/**'
   pull_request:
 
 env:
   CARGO_TERM_COLOR: always
 
 jobs:
-  test-Testrust:
+  build-testrust:
     runs-on: ubuntu-latest
 
     steps:
