@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'testrust/**'
+      - 'lab1_rust_data_structures/**'
   pull_request:
 
 env:
@@ -27,3 +28,22 @@ jobs:
         override: true
     - name: Run Clippy
       run: make build-release
+
+  build-lab1_rust_data_structures:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: lab1_rust_data_structures
+
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions-rs/toolchain@v1
+      with:
+        toolchain: stable
+        profile: minimal
+        components: clippy,rustfmt
+        override: true
+    - name: Run Clippy
+      run: make build-release
+

@@ -31,3 +31,22 @@ Check .github/workflow
 # 2nd Data Engineering with Rust Sandbox - bigdata with copilot
 see bigdata dir.
 copilot setup and try example coding with it.
+
+## Vectors and hash map
+Sequence ~ python list
+Map ~ python dict
+
+
+https://play.rust-lang.org/
+### Vectors
+https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=f51feb63ee453b070a3d745b3151ec80
+https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=14ff9880722e5b6eb6a862fc75fce663
+
+### HashMap
+https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=2a13f87b4f31768bb293d03c115abfd2
+
+# Lab 1: Exploring Rust Data Structures
+
+Objective: The objective of this lab is to introduce students to the common collections and data structures available in the Rust programming language. By the end of the lab, you should have a basic understanding of the variety of collections and their uses.
+
+See lab1_rust_data_structures/README.md for more details.
