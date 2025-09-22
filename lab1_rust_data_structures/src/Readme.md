@@ -1,21 +1,20 @@
 # Compiler output after 1st run
 ## Common Rust Collections:
+Sequences:
+    Vec: https://doc.rust-lang.org/std/vec/struct.Vec.html
+    VecDeque: https://doc.rust-lang.org/std/collections/struct.VecDeque.html
+    LinkedList: https://doc.rust-lang.org/std/collections/struct.LinkedList.html
 
-        Sequences:
-                Vec: https://doc.rust-lang.org/std/vec/struct.Vec.html
-                VecDeque: https://doc.rust-lang.org/std/collections/struct.VecDeque.html
-                LinkedList: https://doc.rust-lang.org/std/collections/struct.LinkedList.html
+Maps:
+    HashMap: https://doc.rust-lang.org/std/collections/struct.HashMap.html
+    BTreeMap: https://doc.rust-lang.org/std/collections/struct.BTreeMap.html
 
-        Maps:
-                HashMap: https://doc.rust-lang.org/std/collections/struct.HashMap.html
-                BTreeMap: https://doc.rust-lang.org/std/collections/struct.BTreeMap.html
+Sets:
+    HashSet: https://doc.rust-lang.org/std/collections/struct.HashSet.html
+    BTreeSet: https://doc.rust-lang.org/std/collections/struct.BTreeSet.html
 
-        Sets:
-                HashSet: https://doc.rust-lang.org/std/collections/struct.HashSet.html
-                BTreeSet: https://doc.rust-lang.org/std/collections/struct.BTreeSet.html
-
-        Misc:
-                BinaryHeap: https://doc.rust-lang.org/std/collections/struct.BinaryHeap.html
+Misc:
+    BinaryHeap: https://doc.rust-lang.org/std/collections/struct.BinaryHeap.html
 
 ## Rust sequence collections
  Why does Rust have different types of sequence collections like Vec, VecDeque, and LinkedList? What are the different use cases for these collections?
