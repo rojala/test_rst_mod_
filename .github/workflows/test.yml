@@ -1,12 +1,17 @@
 name: Tests
 
-on:[push, pull_request]
+on:
+  push:
+    paths:
+      - 'Testrust/**'
+  pull_request:
+      - 'Testrust/**'
 
 env:
   CARGO_TERM_COLOR: always
 
 jobs:
-  build:
+  test-Testrust:
 
     runs-on: ubuntu-latest
 
