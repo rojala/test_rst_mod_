@@ -29,7 +29,7 @@ jobs:
     - name: Run Clippy
       run: make lint
 
-build-lab1_rust_data_structures:
+  build-lab1_rust_data_structures:
     runs-on: ubuntu-latest
 
     defaults:
