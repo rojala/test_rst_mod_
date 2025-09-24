@@ -1,4 +1,5 @@
 # External Lab: Creating a Fruit Salad with Rust Vectors in GitHub Codespaces
+https://github.com/nogibjj/rust-data-engineering/tree/main/vector-fruit-salad
 
 ## Reflection Questions:
 ### What is a Vector in Rust and how is it different from arrays?
@@ -17,4 +18,4 @@ The `enumerate()` method is used to iterate over the elements of the vector whil
 ### The SliceRandom trait provides a method choose(&self, rng: &R) -> Option<&T>. Can you use this to select a random fruit from the salad?
 
 ### Can you create a feature in the program to add a specific number of random fruits (selected from a predefined list) to the salad?
-
+# Fruit Salad

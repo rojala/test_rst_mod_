@@ -4,36 +4,36 @@ A vector is a growable array. It can grow or shrink in size and is one of the mo
 useful data structures in Rust. A vector is represented using the Vec<T> type.
 */
 
+use clap::Parser; // clap is a command line argument parser for Rust
 use rand::seq::SliceRandom; // rand is a random number generation library in Rust
 use rand::thread_rng;
 
-// Change app to accept fruits from command line arguments
-// and add them to the fruit salad. If no arguments are provided,
-// use the default list of fruits.
-/*
-fn add_fruit(fruit: &mut Vec<&str>, new_fruit: &str) {
-    fruit.push(new_fruit);
-}
-
-*/
-
-fn get_command_line_fruits() -> Vec<String> {
-    std::env::args().skip(1).collect()
+// 1.  Modify the program to accept fruits from the user and then add them to the fruit salad?
+//     Using clap --fruit/-f option with multiple arguments.
+#[derive(clap::Parser, Debug)]
+#[clap(author, version, about, long_about = None)]
+struct Args {
+    /// Fruits to add to the salad
+    #[clap(short, long, value_name = "FRUIT", num_args = 1.., required = false)]
+    fruit: Vec<String>,
 }
 
 fn main() {
+    let args = Args::parse();
     let mut fruit = vec![
-        "Orange",
-        "Fig",
-        "Pomegranate",
-        "Cherry",
-        "Apple",
-        "Pear",
-        "Peach",
+        "Orange".to_string(),
+        "Fig".to_string(),
+        "Pomegranate".to_string(),
+        "Cherry".to_string(),
+        "Apple".to_string(),
+        "Pear".to_string(),
+        "Peach".to_string(),
     ];
 
-    let binding = get_command_line_fruits();
-    fruit.extend(binding.iter().map(|s| s.as_str()));
+    // Add user-provided fruits to the fruit salad
+    for f in args.fruit {
+        fruit.push(f);
+    }
 
     // Scramble (shuffle) the fruit
     let mut rng = thread_rng();
