@@ -50,3 +50,7 @@ https://play.rust-lang.org/?version=stable&mode=debug&edition=2021&gist=2a13f87b
 Objective: The objective of this lab is to introduce students to the common collections and data structures available in the Rust programming language. By the end of the lab, you should have a basic understanding of the variety of collections and their uses.
 
 See lab1_rust_data_structures/README.md for more details.
+
+# External Lab: Creating a Fruit Salad with Rust Vectors in GitHub Codespaces
+
+See fruit-salad/Readme.md
