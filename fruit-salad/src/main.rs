@@ -30,14 +30,17 @@ fn main() {
         "Peach".to_string(),
     ];
 
-    // Add user-provided fruits to the fruit salad
+    // 1. Add user-provided fruits to the fruit salad
     for f in args.fruit {
         fruit.push(f);
     }
 
-    // Scramble (shuffle) the fruit
-    let mut rng = thread_rng();
-    fruit.shuffle(&mut rng);
+    // 2.The SliceRandom trait provides a method choose(&self, rng: &R) -> Option<&T>. Can you use this to select a random fruit from the salad?
+    let random_fruit = fruit.choose(&mut thread_rng());
+    match random_fruit {
+        Some(fruit) => println!("Random fruit from the salad: {}", fruit),
+        None => println!("No fruits in the salad!"),
+    }
 
     // Print out the fruit salad
     println!("Fruit Salad:");
