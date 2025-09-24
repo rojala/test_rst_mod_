@@ -10,9 +10,18 @@ use rand::thread_rng;
 
 // 1.  Modify the program to accept fruits from the user and then add them to the fruit salad?
 //     Using clap --fruit/-f option with multiple arguments.
+
+// 3.  Create a feature in the program to add a specific number of random fruits
+//     (selected from a predefined list) to the salad. Use clap option
+//     --number/-n <NUMBER> to specify how many random fruits to add.
+/// Number of random fruits to add from the predefined list
 #[derive(clap::Parser, Debug)]
 #[clap(author, version, about, long_about = None)]
 struct Args {
+    /// Number of random fruits to add from the predefined list
+    #[clap(short, long, value_name = "NUMBER", required = false, default_value_t = 0)]
+    number: usize,
+
     /// Fruits to add to the salad
     #[clap(short, long, value_name = "FRUIT", num_args = 1.., required = false)]
     fruit: Vec<String>,
@@ -20,7 +29,7 @@ struct Args {
 
 fn main() {
     let args = Args::parse();
-    let mut fruit = vec![
+    let mut fruit_org = vec![
         "Orange".to_string(),
         "Fig".to_string(),
         "Pomegranate".to_string(),
@@ -29,6 +38,8 @@ fn main() {
         "Pear".to_string(),
         "Peach".to_string(),
     ];
+
+    let mut fruit = Vec::new();
 
     // 1. Add user-provided fruits to the fruit salad
     for f in args.fruit {
@@ -41,6 +52,22 @@ fn main() {
         Some(fruit) => println!("Random fruit from the salad: {}", fruit),
         None => println!("No fruits in the salad!"),
     }
+
+    // 3. Shuffle the original fruit list
+    fruit_org.shuffle(&mut thread_rng());
+
+    // 3. Add a specific number of random fruits from the predefined list to the salad
+    let mut rng = thread_rng();
+    // If args.number is zero then set it to size of fruit_org and size of fruit
+    let number = if args.number == 0 { fruit_org.len().min(fruit_org.len()) } else { args.number };
+    for _ in 0..number {
+        if let Some(random_fruit) = fruit_org.choose(&mut rng) {
+            fruit.push(random_fruit.to_string());
+        }
+    }
+
+    // 3. Shuffle the fruit list
+    fruit.shuffle(&mut thread_rng());
 
     // Print out the fruit salad
     println!("Fruit Salad:");
