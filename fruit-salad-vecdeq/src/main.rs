@@ -14,7 +14,7 @@ use rand::thread_rng;
 use std::collections::VecDeque;
 
 // 1. Modify the program to allow the user to add fruits to either end of the queue after shuffling?
-// Using claps command line arguments.
+//    Using clap command line arguments.
 #[derive(clap::Parser, Debug)]
 #[clap(author, version, about, long_about = None)]
 struct Args {
@@ -59,6 +59,16 @@ fn main() {
     for f in args.fruit_end {
         let fruit_str = f.clone();
         fruit.push_back(Box::leak(fruit_str.into_boxed_str()));
+    }
+
+    // 2. The SliceRandom trait provides a method choose(&self, rng: &R) -> Option<&T>. 
+    //    Can you use this to select a random fruit from the salad?
+    let mut rng = thread_rng();
+    // Convert VecDeque to Vec for choosing a random fruit
+    let fruit_vec: Vec<_> = fruit.iter().collect();
+    let random_fruit = fruit_vec.choose(&mut rng);
+    if let Some(random_fruit) = random_fruit {
+        println!("Random Fruit: {}", random_fruit);
     }
 
     // Print out the fruit salad
