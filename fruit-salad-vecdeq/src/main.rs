@@ -49,6 +49,25 @@ fn main() {
     fruit.push_back("Fig");
     fruit.push_back("Cherry");
 
+    // 3. Can you adjust the program to remove a fruit from either end of the queue,
+    //    displaying the name of the removed fruit and the state of the queue afterwards?
+    
+    // Re-scramble (shuffle) the fruit - no sense to remove always Pomergranate and Cherry
+    let mut rng = thread_rng();
+    let mut fruit_vec: Vec<_> = fruit.into_iter().collect();
+    fruit_vec.shuffle(&mut rng);
+    fruit = fruit_vec.into_iter().collect();
+
+    // Remove a fruit from the front
+    if let Some(removed_fruit) = fruit.pop_front() {
+        println!("Removed Fruit from Front: {}", removed_fruit);
+    }
+
+    // Remove a fruit from the back
+    if let Some(removed_fruit) = fruit.pop_back() {
+        println!("Removed Fruit from Back: {}", removed_fruit);
+    }
+
     // 1. 1. Add user-provided fruits to the front of the fruit salad
     for f in args.fruit_front {
         let fruit_str = f.clone();
