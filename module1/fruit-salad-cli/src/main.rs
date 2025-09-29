@@ -44,7 +44,15 @@ fn main() {
     //    --> if fruits were entered use those if not then use default fruits.
 
     // Create the fruit salad
-    let fruit_salad = create_fruit_salad(num_fruits, &opts.fruits, &opts.alphabetical);
+    let fruit_salad = create_fruit_salad(num_fruits, &opts.fruits, opts.alphabetical);
+
+    if fruit_salad.is_err() {
+        eprintln!("Error: {}", fruit_salad.err().unwrap());
+        std::process::exit(1);
+    }
+
+    let fruit_salad = fruit_salad.unwrap();
+    let num_fruits = fruit_salad.len();
 
     // Print the fruit salad in human readable format with a count of fruits used
     println!(

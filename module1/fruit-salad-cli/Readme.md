@@ -48,3 +48,7 @@ here.
 * Can you modify the program to print the fruits in alphabetical order after creating the salad?
 
 * How might you adjust the program to handle invalid input from the user, such as a request for more fruits than are available?
+
+    Dynamically/runtime in code or statically e.g.
+
+        #[arg(short, long, value_parser = clap::value_parser!(usize).range(1..=10))]
