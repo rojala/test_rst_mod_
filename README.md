@@ -30,3 +30,6 @@ Check .github/workflow
 
 #### Command Line Fruit Salad Creator
 [See](module1/fruit-salad-cli/Readme.md) for more details.
+
+#### Rust Collection Docs
+[See](module1/rust-collection-docs/Readme.md) for more details.
