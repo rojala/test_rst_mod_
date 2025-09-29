@@ -17,10 +17,29 @@ here.
 ## Reflection Questions:
 
 ### How does the clap library help in creating a command-line interface (CLI) in Rust?
+    It streamlines argument parsing, provides built-in help and error messages, and supports complex CLI structures—all with minimal boilerplate.
 
 ### How is the Vec fruits shuffled in the create_fruit_salad function?
+    It is done by using SliceRandom traits suffle.
 
 ### Why is there a need to convert the fruits Vec into an iterator and then take only a specific number of fruits?
+
+    After shuffling the fruits vector, the goal is to return a new Vec<String> containing only the first num_fruits items.
+    
+    fruits.into_iter().take(num_fruits).collect()
+
+    1. .into_iter()
+    Converts the Vec<String> into an iterator that takes ownership of its elements.
+
+    This is necessary because we want to consume the original vector and build a new one from selected items.
+
+    2. .take(num_fruits)
+    Limits the iterator to yield only the first num_fruits items.
+
+    If num_fruits is greater than the length of the vector, it just yields as many as available.
+
+    3. .collect()
+    Collects the items from the iterator into a new Vec<String>.
 
 ## Challenge Questions:
 
