@@ -15,15 +15,37 @@ A great example of when to use a LinkedList is when you need to insert or remove
 from the middle of the list.
 */
 
+use clap::Parser; // clap is a command line argument parser for Rust
 use rand::seq::SliceRandom; // rand is a random number generation library in Rust
 use rand::thread_rng;
 use std::collections::LinkedList;
 
+// 1. Add command line option to give fruit and its position
+#[derive(clap::Parser, Debug)]
+#[clap(author, version, about, long_about = None)]
+struct Args {
+    /// Number of random fruits to add from the predefined list
+    #[clap(
+        short,
+        long,
+        value_name = "POSITION",
+        required = false,
+        default_value_t = 0 // Store fruit at the front if position is not given
+    )]
+    position: usize,
+
+    /// Fruits to add to the salad
+    #[clap(short, long, value_name = "FRUIT", num_args = 1, required = false)]
+    fruit: Vec<String>,
+}
+
 fn main() {
-    let mut fruit: LinkedList<&str> = LinkedList::new();
-    fruit.push_back("Arbutus");
-    fruit.push_back("Loquat");
-    fruit.push_back("Strawberry Tree Berry");
+    let _args = Args::parse();
+
+    let mut fruit: LinkedList<String> = LinkedList::new();
+    fruit.push_back("Arbutus".to_string());
+    fruit.push_back("Loquat".to_string());
+    fruit.push_back("Strawberry Tree Berry".to_string());
 
     /*
     Please note that converting a LinkedList to a Vec and back to a LinkedList
@@ -41,9 +63,33 @@ fn main() {
     let mut fruit: LinkedList<_> = fruit.into_iter().collect();
 
     // Add fruits to the both ends of the list after shuffling
-    fruit.push_front("Pomegranate");
-    fruit.push_back("Fig");
-    fruit.push_back("Cherry");
+    fruit.push_front("Pomegranate".to_string());
+    fruit.push_back("Fig".to_string());
+    fruit.push_back("Cherry".to_string());
+
+    // 1. Push command line fruit to the specified position
+    // if position is greater than length of list then push to back
+    // fruit changed from &str to String to handle command line input
+    if _args.position > fruit.len() {
+        for f in _args.fruit {
+            fruit.push_back(f.to_string());
+        }
+    } else {
+        // Create a temporary LinkedList to hold the new fruit list
+        // Insert the new fruits at the specified position
+        // Then append the rest of the original list
+        // Finally, replace the original list with the new list
+        let mut temp_list: LinkedList<String> = LinkedList::new();
+        for (i, item) in fruit.iter().enumerate() {
+            if i == _args.position {
+                for f in &_args.fruit {
+                    temp_list.push_back(f.to_string());
+                }
+            }
+            temp_list.push_back(item.to_string());
+        }
+        fruit = temp_list;
+    }
 
     // Print out the fruit salad
     println!("Fruit Salad:");
