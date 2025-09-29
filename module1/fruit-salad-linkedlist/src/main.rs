@@ -24,7 +24,7 @@ use std::collections::LinkedList;
 #[derive(clap::Parser, Debug)]
 #[clap(author, version, about, long_about = None)]
 struct Args {
-    /// Number of random fruits to add from the predefined list
+    /// Postition of random fruits to be added
     #[clap(
         short,
         long,
@@ -37,6 +37,16 @@ struct Args {
     /// Fruits to add to the salad
     #[clap(short, long, value_name = "FRUIT", num_args = 1, required = false)]
     fruit: Vec<String>,
+
+    /// Position of fruit to be removed
+    #[clap(
+        short,
+        long,
+        value_name = "REMOVE_POSITION",
+        required = false,
+        default_value_t = -1,
+    )]
+    remove_position: isize,
 }
 
 fn main() {
@@ -97,6 +107,28 @@ fn main() {
     let fruit_vec: Vec<_> = fruit.iter().collect();
     if let Some(random_fruit) = fruit_vec.choose(&mut rng) {
         println!("Random Fruit: {}", random_fruit);
+    }
+
+    // 3. Adjust the program to remove a fruit from any position in the LinkedList,
+    //    displaying the name of the removed fruit and the state of the list afterwards.
+    //    If remove_position is not set then ignore this step.
+    
+    if _args.remove_position > 0 && _args.remove_position < fruit.len().try_into().unwrap() {
+        let mut temp_list: LinkedList<String> = LinkedList::new();
+        let mut removed_fruit = String::new();
+        for (i, item) in fruit.iter().enumerate() {
+            if i == _args.remove_position.try_into().unwrap() {
+                removed_fruit = item.to_string();
+                continue; // Skip adding this item to the new list
+            }
+            temp_list.push_back(item.to_string());
+        }
+        fruit = temp_list;
+        println!("Removed Fruit: {} at {}", removed_fruit, _args.remove_position);
+    } else {
+        if _args.remove_position >= fruit.len().try_into().unwrap() {
+            println!("Remove position is out of bounds {} >= {}, no fruit removed.", _args.remove_position, fruit.len());
+        }
     }
 
     // Print out the fruit salad
