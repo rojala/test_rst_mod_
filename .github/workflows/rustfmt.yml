@@ -3,8 +3,8 @@ name: Rustfmt
 on:
   push:
     paths:
-      - 'testrust/**'
-      - 'lab1_rust_data_structures/**'
+      - 'module1/testrust/**'
+      - 'module1/lab1_rust_data_structures/**'
   pull_request:
 
 env:
@@ -17,7 +17,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: testrust
+        working-directory: module1/testrust
 
     steps:
     - uses: actions/checkout@v4
@@ -36,7 +36,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: lab1_rust_data_structures
+        working-directory: module1/lab1_rust_data_structures
 
     steps:
     - uses: actions/checkout@v4
