@@ -70,7 +70,7 @@ fn main() {
     // 1. Push command line fruit to the specified position
     // if position is greater than length of list then push to back
     // fruit changed from &str to String to handle command line input
-    if _args.position > fruit.len() {
+    if _args.position >= fruit.len() {
         for f in _args.fruit {
             fruit.push_back(f.to_string());
         }
@@ -89,6 +89,14 @@ fn main() {
             temp_list.push_back(item.to_string());
         }
         fruit = temp_list;
+    }
+
+    // 2. The SliceRandom trait provides a method choose(&self, rng: &R) -> Option<&T>.
+    //    Use this to select a random fruit from the salad.
+    let mut rng = thread_rng();
+    let fruit_vec: Vec<_> = fruit.iter().collect();
+    if let Some(random_fruit) = fruit_vec.choose(&mut rng) {
+        println!("Random Fruit: {}", random_fruit);
     }
 
     // Print out the fruit salad
