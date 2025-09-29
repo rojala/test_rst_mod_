@@ -1,7 +1,11 @@
 use rand::seq::SliceRandom;
 use rand::thread_rng;
 
-pub fn create_fruit_salad(num_fruits: usize, custom_fruits: &Vec<String>) -> Vec<String> {
+pub fn create_fruit_salad(
+    num_fruits: usize,
+    custom_fruits: &Vec<String>,
+    alphabetical: &bool,
+) -> Vec<String> {
     let fruits = vec![
         "Arbutus".to_string(),
         "Loquat".to_string(),
@@ -27,9 +31,17 @@ pub fn create_fruit_salad(num_fruits: usize, custom_fruits: &Vec<String>) -> Vec
         num_fruits
     };
 
-    let mut rng = thread_rng();
-    let mut fruits = fruits;
-    fruits.shuffle(&mut rng);
+    // 2. modify the program to print the fruits in alphabetical order after creating the salad.
+    let fruits = if *alphabetical {
+        let mut sorted_fruits = fruits.clone();
+        sorted_fruits.sort();
+        sorted_fruits
+    } else {
+        let mut rng = thread_rng();
+        let mut fruits = fruits;
+        fruits.shuffle(&mut rng);
+        fruits
+    };
 
     fruits.into_iter().take(num_fruits).collect()
 }
