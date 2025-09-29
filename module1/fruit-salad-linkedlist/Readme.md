@@ -23,9 +23,59 @@ To understand how the environment is set up, you can inspect the .devcontainer f
 
 * What is a LinkedList in Rust and how is it different from a Vector or a VecDeque?
 
+    LinkedList<T>
+    A doubly-linked list where each element points to the next and previous elements.
+
+    Pros:
+    * Efficient insertion and removal at both ends and in the middle (O(1) if you have the pointer).
+    * Good for scenarios where you frequently insert/remove elements in the middle of the list.
+
+    Cons:
+    * Poor cache locality: each element is stored separately on the heap, so iteration is slower.
+    * Slower random access: accessing the nth element takes O(n) time.
+    * Generally less efficient than Vec or VecDeque for most use cases.
+
+    Use case:
+    * When you need frequent insertions/removals in the middle of a list and don’t care about random access speed
+
 * In what situations might you prefer to use a LinkedList over other data structures?
- 
+
+    You might prefer to use a LinkedList in Rust in very specific scenarios, especially when the characteristics of linked lists align well with your performance needs. Here are the main situations where LinkedList can be a better choice than Vec or VecDeque:
+    * When frequent insertions/removals in the middle of the list are needed
+        
+        If your algorithm involves frequent non-end insertions or deletions, and you already have a reference (or cursor) to the location, a LinkedList can do this in O(1) time. In contrast, Vec and VecDeque would require shifting elements, which is O(n).
+
+        Example use case:
+        * Implementing a LRU cache with a list of recently used items.
+        * Maintaining a sorted list where elements are inserted in order.
+
+    * When you need stable pointers to elements
+        
+        In a LinkedList, the memory location of each node is stable (unless removed), which means you can safely hold references to elements even as the list changes.
+        
+        Example use case:
+        * Building a graph structure where nodes are stored in a list and edges reference them.
+
+    * When you need bidirectional iteration
+
+        LinkedList is doubly-linked, so you can iterate forward and backward efficiently.
+        
+        Example use case:
+        * Implementing a text editor buffer where you move a cursor back and forth.
+
+
+    ⚠️ Caveats and Considerations
+    
+    Despite these advantages, in most real-world Rust applications, Vec or VecDeque are preferred because:
+    * They are faster due to better cache locality.
+    * They are simpler to use and reason about.
+    * Rust’s ownership model makes safe manipulation of linked lists more complex.
+
+    Even the Rust documentation notes that LinkedList is rarely the optimal choice.
+
 * Why is there a need to convert the LinkedList to a Vec and then back to LinkedList in this program?
+
+    Rust’s LinkedList does not support built-in shuffling but Vec does.
 
 ### Challenge Questions:
 
