@@ -1,7 +1,7 @@
 use rand::seq::SliceRandom;
 use rand::thread_rng;
 
-pub fn create_fruit_salad(num_fruits: usize) -> Vec<String> {
+pub fn create_fruit_salad(num_fruits: usize, custom_fruits: &Vec<String>) -> Vec<String> {
     let fruits = vec![
         "Arbutus".to_string(),
         "Loquat".to_string(),
@@ -14,6 +14,18 @@ pub fn create_fruit_salad(num_fruits: usize) -> Vec<String> {
         "Peach".to_string(),
         "Apple".to_string(),
     ];
+
+    let fruits = if !custom_fruits.is_empty() {
+        custom_fruits.clone()
+    } else {
+        fruits
+    };
+
+    let num_fruits = if num_fruits == 0 || num_fruits > fruits.len() {
+        fruits.len()
+    } else {
+        num_fruits
+    };
 
     let mut rng = thread_rng();
     let mut fruits = fruits;

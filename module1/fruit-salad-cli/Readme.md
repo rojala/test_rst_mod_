@@ -43,8 +43,8 @@ here.
 
 ## Challenge Questions:
 
-### Can you modify the program to allow the user to specify which fruits they want in their salad as command-line arguments?
+* Can you modify the program to allow the user to specify which fruits they want in their salad as command-line arguments?
 
-### Can you modify the program to print the fruits in alphabetical order after creating the salad?
+* Can you modify the program to print the fruits in alphabetical order after creating the salad?
 
-### How might you adjust the program to handle invalid input from the user, such as a request for more fruits than are available?
+* How might you adjust the program to handle invalid input from the user, such as a request for more fruits than are available?
