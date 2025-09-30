@@ -1,3 +1,4 @@
+mod lib_benchmark;
 mod lib_priorityqueue;
 mod lib_wordcount;
 
@@ -28,7 +29,12 @@ fn test_priority_queue() {
     assert!(pq.is_empty());
 }
 
+fn test_benchmark_collections() {
+    lib_benchmark::benchmark_collections();
+}
+
 fn main() {
     test_word_count();
     test_priority_queue();
+    test_benchmark_collections();
 }
