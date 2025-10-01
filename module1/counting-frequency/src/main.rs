@@ -5,29 +5,48 @@ use std::collections::HashMap;
 
 // 1. Use clap  modify the program to accept input from the
 // user and then calculate the frequency of each integer.
+// 2.  Extend this concept to count the frequency of words in a sentence.
+
 use clap::{Arg, Command};
 
-fn main_with_clap() -> Vec<(i32, u32)> {
+fn main_with_clap() -> Vec<(String, u32)> {
     let matches = Command::new("counting-frequency")
         .version("1.0")
         .author("Author Name")
-        .about("Counts the frequency of each integer in a list")
+        .about("Counts the frequency of each integer/word in a list")
         .arg(
-            Arg::new("numbers")
-                .help("List of integers to count frequency")
+            Arg::new("numbers or words")
+                .help("List of integers or words to count frequency")
                 .required(false)
                 .num_args(1..),
         )
         .get_matches();
 
-    let numbers: Vec<i32> = matches
-        .get_many::<String>("numbers")
-        .unwrap()
-        .map(|s| s.parse().unwrap())
-        .collect();
+    let numbers: Vec<String> = if let Some(nums) = matches.get_many::<String>("numbers or words") {
+        nums.map(|s| s.to_string()).collect()
+    } else {
+        vec![ ]
+    };
 
-    let _result: Vec<(i32, u32)> = logic(numbers);
+    let _result: Vec<(String, u32)> = logic_word(numbers);
     _result
+}
+
+fn logic_word(numbers_or_words: Vec<String>) -> Vec<(String, u32)> {
+    let mut frequencies = HashMap::new();
+
+    for item in numbers_or_words {
+        let frequency = frequencies.entry(item).or_insert(0);
+        *frequency += 1;
+    }
+
+    let mut result = Vec::new();
+
+    for (item, frequency) in frequencies {
+        result.push((item, frequency));
+    }
+
+    result
 }
 
 fn logic(numbers: Vec<i32>) -> Vec<(i32, u32)> {
@@ -58,5 +77,8 @@ fn main() {
 
     let _cli_result = main_with_clap();
     // Print the results from the CLI
-    println!("The frequency of each number from CLI input is: {:?}", _cli_result);
+    println!(
+        "The frequency of each number/word from CLI input is: {:?}",
+        _cli_result
+    );
 }
