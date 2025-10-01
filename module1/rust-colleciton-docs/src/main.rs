@@ -4,6 +4,7 @@ use clap::{Arg, Command};
 mod lib_benchmark;
 mod lib_priorityqueue;
 mod lib_wordcount;
+mod lib_test;
 
 fn main_with_clap() {
     let matches = Command::new("rust-collection-docs")
@@ -90,4 +91,5 @@ fn main() {
     test_benchmark_collections();
     test_parse_args();
     main_with_clap();
+    lib_test::test_custom_struct();
 }
