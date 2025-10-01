@@ -16,8 +16,37 @@ Objective: The goal of this lab is to provide an understanding of Rust's HashMap
 ## Reflection Questions:
 
 * How is HashMap used in this program and what is its function?
+
+    HashMap is used to store the frequency of each number in the input vector. It maps each unique number (i32) to the number of times it appears (u32).
+
 * Why is or_insert(0) used in frequencies.entry(num).or_insert(0)?
+
+    frequencies.entry(num):
+
+    * This accesses the entry for the key num in the HashMap.
+    * If num is already a key, it returns a mutable reference to its value.
+    * If num is not present, it prepares to insert it.
+
+    .or_insert(0):
+    * If num is not already in the map, insert it with the value 0.
+    * Returns a mutable reference to the value (either existing or newly inserted).
+
+    (Bonus) *frequency += 1;:
+    * Dereferences the mutable reference and increments the value by 1.
+
 * How does the program ensure that each number and its frequency are correctly paired in the final result?
+    
+    After counting, the program builds the result vector:
+
+        for (num, frequency) in frequencies {
+            result.push((num, frequency));
+        }
+    
+    This loop:
+    * Iterates over each (key, value) pair in the HashMap.
+    * Pushes a tuple (num, frequency) into the result vector.
+
+    Since HashMap maintains the correct mapping of each number to its frequency, this guarantees that each tuple in the result vector is accurate.
 
 ## Challenge Questions:
 
