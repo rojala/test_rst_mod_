@@ -66,6 +66,20 @@ fn logic(numbers: Vec<i32>) -> Vec<(i32, u32)> {
     result
 }
 
+// 3. order Vec(i32, u32) by frequency = value not key
+fn order_by_frequency_string(vec: Vec<(String, u32)>) -> Vec<(String, u32)> {
+    let mut vec = vec;
+    vec.sort_by(|a, b| b.1.cmp(&a.1));
+    vec
+}
+
+// 3. order Vec(String, u32) by frequency = value not key
+fn order_by_frequency_int(vec: Vec<(i32, u32)>) -> Vec<(i32, u32)> {
+    let mut vec = vec;
+    vec.sort_by(|a, b| b.1.cmp(&a.1));
+    vec
+}
+
 fn main() {
     let numbers = vec![1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 3];
     let result = logic(numbers);
@@ -74,11 +88,23 @@ fn main() {
         "The frequency of each number in the vector is: {:?}",
         result
     );
+    
+    // 3. order
+    println!(
+        "Ordered The frequency of each number in the vector is: {:?}",
+        order_by_frequency_int(result)
+    );
 
     let _cli_result = main_with_clap();
     // Print the results from the CLI
     println!(
         "The frequency of each number/word from CLI input is: {:?}",
         _cli_result
+    );
+
+    // 3. ordered from CLI
+    println!(
+        "Ordered frequency of each number/word from CLI input is: {:?}",
+        order_by_frequency_string(_cli_result)
     );
 }
