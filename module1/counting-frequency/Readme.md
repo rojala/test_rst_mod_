@@ -13,6 +13,8 @@ Objective: The goal of this lab is to provide an understanding of Rust's HashMap
 * Step 7: Run the command make all to build and run the program. This command will format your code, check for any linter warnings, run any tests, and finally execute your program.
 * Step 8: You should see the frequency of each number printed in the console.
 
+(Lab id fopgeyplnzcb)
+
 ## Reflection Questions:
 
 * How is HashMap used in this program and what is its function?
