@@ -34,5 +34,8 @@ Check .github/workflow
 #### Rust Collection Docs
 [See](module1/rust-collection-docs/Readme.md) for more details.
 
-### Counting Frequency with Rust HashMaps
+### Lab Counting Frequency with Rust HashMaps
 [See](module1/counting-frequency/Readme.md) for more details.
+
+### Lab Weighted rating of programming languages
+[See](module1/weighted-rating-of-programminglanguages/Readme.md) for more details.
