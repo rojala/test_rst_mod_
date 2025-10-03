@@ -133,6 +133,5 @@ If keys are small, dense integers (e.g., bytes 0–255), a fixed-size array (`[u
 ### Collect word counts in a text file using a hash map
     see word-count dir
 
-Store RGB color values in a vector or array and print them out
-
-Runnable Rust Code Examples
+### Store RGB color values in a vector or array and print them out
+    see rgb dir
