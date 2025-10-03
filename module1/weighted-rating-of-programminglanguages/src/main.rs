@@ -1,6 +1,6 @@
 use chrono::Datelike;
-use std::collections::HashMap;
 use clap::{Arg, Command};
+use std::collections::HashMap;
 
 fn init_languages() -> HashMap<String, i32> {
     let mut languages = HashMap::new();
@@ -69,8 +69,14 @@ fn main_check_cli() -> HashMap<String, i32> {
         )
         .get_matches();
 
-    let languages: Vec<&String> = matches.get_many::<String>("language").unwrap_or_default().collect();
-    let years: Vec<&String> = matches.get_many::<String>("year").unwrap_or_default().collect();
+    let languages: Vec<&String> = matches
+        .get_many::<String>("language")
+        .unwrap_or_default()
+        .collect();
+    let years: Vec<&String> = matches
+        .get_many::<String>("year")
+        .unwrap_or_default()
+        .collect();
 
     if languages.len() != years.len() {
         eprintln!("Error: The number of --language and --year arguments must match.");
@@ -99,6 +105,13 @@ fn main_check_cli() -> HashMap<String, i32> {
     language_years
 }
 
+// 2. How would you modify the program to sort the languages by their weights?
+fn sort_by_weight(weights: &HashMap<String, i32>) -> Vec<(String, i32)> {
+    let mut weight_vec: Vec<(String, i32)> = weights.iter().map(|(k, &v)| (k.clone(), v)).collect();
+    weight_vec.sort_by(|a, b| a.1.cmp(&b.1));
+    weight_vec
+}
+
 fn main() {
     // Get languages and years from CLI
     let cli_language_years = main_check_cli();
@@ -110,7 +123,10 @@ fn main() {
     // and give warnig.
     for (lang, year) in &cli_language_years {
         if languages.contains_key(lang) {
-            eprintln!("Warning: Language '{}' already exists with year {}. Updating to new year {}.", lang, languages[lang], year);
+            eprintln!(
+                "Warning: Language '{}' already exists with year {}. Updating to new year {}.",
+                lang, languages[lang], year
+            );
         }
         languages.insert(lang.to_string(), *year);
     }
@@ -119,6 +135,13 @@ fn main() {
 
     println!("Language weighing from 1-100 by age (1 is newest and 100 is oldest):");
     for (language, weight) in &weights {
+        println!("{}: {}", language, weight);
+    }
+
+    // 2. Sorted printing by weight
+    println!("\n");
+    println!("Sorted language by weighing from 1-100 by age (1 is newest and 100 is oldest):");
+    for (language, weight) in sort_by_weight(&weights) {
         println!("{}: {}", language, weight);
     }
 }
