@@ -20,22 +20,25 @@ Check .github/workflow
 [See](module1/lab1_rust_data_structures/README.md) for details.
 
 #### Fruit Salad with Rust Vectors
-[See](module1/fruit-salad/Readme.md) for more details.
+    [See](module1/fruit-salad/Readme.md) for more details.
 
 #### Fruit Salad Creation with VecDeque
-[See](module1/fruit-salad-vecdeq/Readme.md) for more details.
+    [See](module1/fruit-salad-vecdeq/Readme.md) for more details.
 
 #### Fruit Salad Creation with LinkedList
-[See](module1/fruit-salad-linkedlist/Readme.md) for more details.
+    [See](module1/fruit-salad-linkedlist/Readme.md) for more details.
 
 #### Command Line Fruit Salad Creator
-[See](module1/fruit-salad-cli/Readme.md) for more details.
+    [See](module1/fruit-salad-cli/Readme.md) for more details.
 
 #### Rust Collection Docs
-[See](module1/rust-collection-docs/Readme.md) for more details.
+    [See](module1/rust-collection-docs/Readme.md) for more details.
 
 ### Lab Counting Frequency with Rust HashMaps
-[See](module1/counting-frequency/Readme.md) for more details.
+    [See](module1/counting-frequency/Readme.md) for more details.
 
 ### Lab Weighted rating of programming languages
-[See](module1/weighted-rating-of-programminglanguages/Readme.md) for more details.
+    [See](module1/weighted-rating-of-programminglanguages/Readme.md) for more details.
+
+### Lessons reflection 1
+    [See](module1/lessons-reflection-1/Readme.md) for more details.
