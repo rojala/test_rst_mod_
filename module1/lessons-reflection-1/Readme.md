@@ -127,7 +127,8 @@ If keys are small, dense integers (e.g., bytes 0–255), a fixed-size array (`[u
 ### Implement a queue by using a VecDeque and simulate people waiting in line
     see waiting-line dir
 
-Build a simple phone book as a hash map of names to phone numbers
+### Build a simple phone book as a hash map of names to phone numbers
+    see phone-book dir
 
 Collect word counts in a text file using a hash map
 
