@@ -130,7 +130,8 @@ If keys are small, dense integers (e.g., bytes 0–255), a fixed-size array (`[u
 ### Build a simple phone book as a hash map of names to phone numbers
     see phone-book dir
 
-Collect word counts in a text file using a hash map
+### Collect word counts in a text file using a hash map
+    see word-count dir
 
 Store RGB color values in a vector or array and print them out
 
