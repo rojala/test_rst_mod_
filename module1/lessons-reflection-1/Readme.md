@@ -124,7 +124,8 @@ If keys are small, dense integers (e.g., bytes 0–255), a fixed-size array (`[u
 ### Create a program that stores a grocery list in a vector and prints out each item
     see grocery-list dir
 
-Implement a queue by using a VecDeque and simulate people waiting in line
+### Implement a queue by using a VecDeque and simulate people waiting in line
+    see waiting-line dir
 
 Build a simple phone book as a hash map of names to phone numbers
 
