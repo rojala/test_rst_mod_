@@ -121,7 +121,8 @@ If keys are small, dense integers (e.g., bytes 0–255), a fixed-size array (`[u
 
 ## 5 Challenge Exercises
 
-Create a program that stores a grocery list in a vector and prints out each item
+### Create a program that stores a grocery list in a vector and prints out each item
+    see grocery-list dir
 
 Implement a queue by using a VecDeque and simulate people waiting in line
 
