@@ -3,8 +3,8 @@ use neo4rs::*;
 use reqwest::Client;
 use serde_json::Value;
 use std::env;
-use std::sync::Arc;
 use std::result::Result as StdResult;
+use std::sync::Arc;
 
 pub async fn run() -> StdResult<(), Box<dyn std::error::Error>> {
     dotenv::dotenv().ok();
@@ -46,7 +46,10 @@ async fn fetch_tweets(token: &str, query: &str) -> StdResult<Value, reqwest::Err
     Ok(res)
 }
 
-async fn ingest_tweet(graph: Arc<Graph>, tweet: &Value) -> StdResult<(), Box<dyn std::error::Error>> {
+async fn ingest_tweet(
+    graph: Arc<Graph>,
+    tweet: &Value,
+) -> StdResult<(), Box<dyn std::error::Error>> {
     let id = tweet["id"].as_str().unwrap_or("unknown");
     let text = tweet["text"].as_str().unwrap_or("");
     let author = tweet["author_id"].as_str().unwrap_or("unknown");

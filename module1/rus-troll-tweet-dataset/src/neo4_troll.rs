@@ -1,8 +1,8 @@
 // Might work - teste in theory only
 
 use neo4rs::*;
-use std::sync::Arc;
 use std::result::Result;
+use std::sync::Arc;
 
 pub async fn run() -> Result<(), Box<dyn std::error::Error>> {
     let config = ConfigBuilder::default()
@@ -12,7 +12,8 @@ pub async fn run() -> Result<(), Box<dyn std::error::Error>> {
         .build()?;
     let graph = Arc::new(Graph::connect(config).await?);
 
-    let query = Query::new("
+    let query = Query::new(
+        "
         CREATE (a:TrollAccount {name: 'Troll_A'})
         CREATE (b:TrollAccount {name: 'Troll_B'})
         CREATE (t:Tweet {id: 'tweet123', content: 'Fake news about election'})
@@ -23,7 +24,9 @@ pub async fn run() -> Result<(), Box<dyn std::error::Error>> {
         CREATE (t)-[:USED_HASHTAG]->(h)
         CREATE (t)-[:TARGETS]->(g)
         CREATE (a)-[:COORDINATES_WITH]->(b)
-    ".to_string());
+    "
+        .to_string(),
+    );
 
     graph.run(query).await?;
     println!("Graph created successfully.");
