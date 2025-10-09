@@ -42,3 +42,6 @@ Check .github/workflow
 
 ### Lessons reflection 1
     [See](module1/lessons-reflection-1/Readme.md) for more details.
+
+### Russian Troll Tweet Datasets
+    [See](module1/rus-troll-tweet-dataset/Readme.md) for more details.
