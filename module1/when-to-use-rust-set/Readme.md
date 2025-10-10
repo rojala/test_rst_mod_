@@ -69,10 +69,22 @@ When to use a Rust Set
 
 ## 🧪 **Challenges**
 
-1. Word frequencies
+1. Implement a program that reads text from a file into a HashMap to count word frequencies in Rust.
     * Run:
 
             cargo run --features word_frequencies
     
     * [src](src/word_frequencies.rs)
     * [Input txt](src/word_frequencies.txt)
+
+2. Benchmark insertion and lookup performance on Vec, LinkedList, HashMap, and BTreeMap with 10k elements.
+    * Run:
+
+            cargo run --features insertion_and_lookup_performance
+    
+    * [src](src/insertion_and_lookup_performance.rs)
+
+            Vec: insert = 152.569µs, lookup = 32.340295ms
+            LinkedList: insert = 686.382µs, lookup = 46.222866ms
+            HashMap: insert = 5.448461ms, lookup = 227.538µs
+            BTreeMap: insert = 6.564706ms, lookup = 431.179µs
