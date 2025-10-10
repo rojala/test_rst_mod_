@@ -1,0 +1,15 @@
+[package]
+name = "when-to-use-rust-set"
+version = "0.1.0"
+edition = "2024"
+
+[features]
+default = []
+word_frequencies = []
+insertion_and_lookup_performance = []
+priority_queue = []
+struct_with_traits = []
+custom_collection = []
+
+[dependencies]
+cfg-if = "1.0"

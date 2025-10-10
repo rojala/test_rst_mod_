@@ -68,3 +68,11 @@ When to use a Rust Set
 ---
 
 ## 🧪 **Challenges**
+
+1. Word frequencies
+    * Run:
+
+            cargo run --features word_frequencies
+    
+    * [src](src/word_frequencies.rs)
+    * [Input txt](src/word_frequencies.txt)
