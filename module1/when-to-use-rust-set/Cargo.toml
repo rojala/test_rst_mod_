@@ -7,7 +7,7 @@ edition = "2024"
 default = []
 word_frequencies = []
 insertion_and_lookup_performance = ["rand"]
-priority_queue = []
+priority_queue = ["rand"]
 struct_with_traits = []
 custom_collection = []
 

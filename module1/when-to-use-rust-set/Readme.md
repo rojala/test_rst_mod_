@@ -88,3 +88,10 @@ When to use a Rust Set
             LinkedList: insert = 686.382µs, lookup = 46.222866ms
             HashMap: insert = 5.448461ms, lookup = 227.538µs
             BTreeMap: insert = 6.564706ms, lookup = 431.179µs
+
+3. Build a priority queue with BinaryHeap and implement heap sort on a vector of integers.
+    * Run:
+
+            cargo run --features priority_queue
+    
+    * [src](src/priority_queue.rs)
