@@ -95,3 +95,10 @@ When to use a Rust Set
             cargo run --features priority_queue
     
     * [src](src/priority_queue.rs)
+
+4. Create a Rust struct that implements traits like PartialEq and Hash to be used as keys in a HashMap.
+    * Run:
+
+            cargo run --features=struct_with_traits
+    
+    * [src](src/struct_with_traits.rs)
