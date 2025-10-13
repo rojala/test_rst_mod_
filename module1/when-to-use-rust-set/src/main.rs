@@ -32,6 +32,10 @@ cfg_if! {
     } else if #[cfg(feature = "custom_collection")] {
         mod custom_collection;
         use custom_collection::run;
+        
+        #[cfg(test)]
+        mod custom_collections_test;
+
         fn main() {
             run();
         }

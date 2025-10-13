@@ -102,3 +102,14 @@ When to use a Rust Set
             cargo run --features=struct_with_traits
     
     * [src](src/struct_with_traits.rs)
+
+5. Write tests for a custom Rust collection type that leverages iterators and implements IntoIterator.
+    * Run:
+
+            cargo run --features=struct_with_traits
+
+    * Run tests
+
+            cargo test --features=custom_collection
+    
+    * [src](src/custom_collection.rs)
