@@ -51,3 +51,6 @@ Check .github/workflow
 
 ### Rust iterators
 [See](module1/rust-iterators/Readme.md) for more details.
+
+### Neo4J Graph Data Science Library Manual
+[See](module1/neo4j/Readme.md) for more details.
