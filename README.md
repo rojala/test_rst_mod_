@@ -48,3 +48,6 @@ Check .github/workflow
 
 ### When to use a Rust Set
 [See](module1/when-to-use-rust-set/Readme.md) for more details.
+
+### Rust iterators
+[See](module1/rust-iterators/Readme.md) for more details.
