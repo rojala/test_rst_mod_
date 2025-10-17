@@ -78,6 +78,70 @@ In this lab, you'll learn how to use the petgraph crate in Rust to create a grap
 
 1. How would you modify the program to also calculate and display the betweenness centrality of each fighter?
 
+Added run cargo run
+
 2. How could you adapt this code to represent a different kind of network, such as a social network or transportation network?
 
+    Adapting your UFC fighter graph code to represent a **different kind of network**—like a **social network** or a **transportation network**—is quite straightforward with `petgraph`. The core idea is to change the **meaning of nodes and edges** while keeping the graph structure intact.
+
+    ### 🧑‍🤝‍🧑 **Social Network**
+
+    **Nodes**: People  
+    **Edges**: Friendships, follows, messages, etc.
+
+    #### Changes:
+    - Rename `Fighter` to `Person`
+    - Edges could be **weighted** by interaction frequency or strength of relationship
+    - Use `UnGraph` for mutual friendships or `DiGraph` for directed relationships (e.g., follows)
+
+    ```rust
+    #[derive(Debug)]
+    struct Person {
+        name: String,
+        age: u32,
+        location: String,
+    }
+    ```
+
+    ```rust
+    graph.add_edge(nodes[a], nodes[b], 0.75); // 0.75 = strength of friendship
+    ```
+
+    Then calculate centrality to find **influential people** or **connectors** in the network.
+
+    ### 🚉 **Transportation Network**
+
+    **Nodes**: Cities or stations  
+    **Edges**: Routes between them
+
+    #### Changes:
+    - Rename `Fighter` to `Station` or `City`
+    - Edge weights could represent **distance**, **travel time**, or **cost**
+    - Use `UnGraph` for bidirectional routes or `DiGraph` for one-way routes
+
+    ```rust
+    #[derive(Debug)]
+    struct City {
+        name: String,
+        population: u64,
+    }
+    ```
+
+    ```rust
+    graph.add_edge(nodes[a], nodes[b], 120.0); // 120.0 = kilometers
+    ```
+
+    Use centrality to identify **hub cities** or **critical transit points**.
+
+    ### 🧠 Centrality Metrics in Other Networks
+
+    - **Closeness Centrality**: Who can reach others fastest (e.g., influencers, central stations)
+    - **Betweenness Centrality**: Who acts as a bridge (e.g., connectors in social networks, transfer hubs in transit)
+    - **Degree Centrality**: Who has the most connections (e.g., popular users, busy stations)
+
 3. Can you add functionality to add new fighters and fights to the network?
+    
+    Run using additional parameters to add fights and fighters (multiple parameters allowed).
+    ```bash
+    cargo run -- --add-fighter foo --add-fight "foo:Khabib Nurmagomedov" --add-fight "foo:Conor McGregor"
+    ```
