@@ -2,6 +2,10 @@ use petgraph::Direction;
 use petgraph::graph::{NodeIndex, UnGraph};
 use std::fmt;
 
+// 1. Calculate and display the betweenness centrality for each fighter in the graph.
+use std::collections::HashMap;
+use petgraph::algo::dijkstra;
+
 #[derive(Debug)]
 struct Fighter {
     name: String,
@@ -31,6 +35,34 @@ fn add_edge(graph: &mut UnGraph<&Fighter, f32>, nodes: &[NodeIndex], a: usize, b
     graph.add_edge(nodes[a], nodes[b], 1.0);
 }
 
+// 1. Calculate and display the betweenness centrality for each fighter in the graph.
+fn calculate_betweenness(graph: &UnGraph<&Fighter, f32>, nodes: &[NodeIndex]) -> HashMap<NodeIndex, f32> {
+    let mut centrality = HashMap::new();
+
+    for &source in nodes {
+        for &target in nodes {
+            if source != target {
+                let paths = dijkstra(graph, source, Some(target), |_| 1.0);
+                if let Some(&distance) = paths.get(&target) {
+                    for (&node, &dist) in &paths {
+                        if node != source && node != target && dist < distance {
+                            *centrality.entry(node).or_insert(0.0) += 1.0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // Normalize by dividing by total possible pairs
+    let total_pairs = ((nodes.len() - 1) * (nodes.len() - 2)) as f32;
+    for value in centrality.values_mut() {
+        *value /= total_pairs;
+    }
+
+    centrality
+}
+
 fn main() {
     let mut graph = UnGraph::new_undirected();
 
@@ -55,11 +87,22 @@ fn main() {
     add_edge(&mut graph, &fighter_nodes, 0, 4); // Dustin Poirier vs. Nate Diaz
     add_edge(&mut graph, &fighter_nodes, 2, 4); // Jose Aldo vs. Nate Diaz
 
+    let betweenness = calculate_betweenness(&graph, &fighter_nodes);
+
     for (i, &node) in fighter_nodes.iter().enumerate() {
         let name = &fighters[i].name;
         let degree = graph.edges_directed(node, Direction::Outgoing).count() as f32;
         let closeness = 1.0 / degree;
+        let between = betweenness.get(&node).cloned().unwrap_or(0.0);
+
         println!("The closeness centrality of {} is {:.2}", name, closeness);
+        println!("  Betweenness Centrality: {:.2}.", between);
+
+        /* println!("Fighter: {}", name);
+         * println!("  Closeness Centrality: {:.2}", closeness);
+         * println!("  Betweenness Centrality: {:.2}", between);
+         * println!("-----------------");
+         */
 
         // Explanation
         match name.as_str() {
