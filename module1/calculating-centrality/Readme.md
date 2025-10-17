@@ -22,9 +22,57 @@ In this lab, you'll learn how to use the petgraph crate in Rust to create a grap
 
 1. What is the 'closeness centrality' in the context of this program, and how is it calculated?
 
+    **Closeness centrality** measures how close a node is to all other nodes in the graph. In a social network (like UFC fighters), it reflects how quickly a fighter can interact (or reach) others through fights.
+
+    In this program, closeness centrality is calculated as:
+
+    $$
+    C(u) = \frac{1}{\sum_{v \neq u} d(u, v)}
+    $$
+
+    Where:
+    - \( C(u) \) is the closeness centrality of fighter \( u \)
+    - \( d(u, v) \) is the shortest path distance between fighter \( u \) and fighter \( v \)
+
+    This means fighters who have fought many others directly or indirectly (through chains of fights) will have higher centrality.
+
+    ```rust
+    let degree = graph.edges_directed(node, Direction::Outgoing).count() as f32;
+    let closeness = 1.0 / degree;
+    println!("The closeness centrality of {} is {:.2}", name, closeness);
+    ```
+
 2. How does the add_edge function work, and why do you need to pass in an array of NodeIndex?
 
+    In `petgraph`, the `add_edge` function connects two nodes in the graph. Its signature looks like:
+
+    ```rust
+    graph.add_edge(node_a, node_b, weight);
+    ```
+
+    - `node_a` and `node_b` are of type `NodeIndex`, which uniquely identify nodes in the graph.
+    - `weight` can be any data you want to associate with the edge (e.g., fight date, result, etc.).
+
+    You need an array of `NodeIndex` because:
+    - When you add fighters (nodes), you get back their `NodeIndex`.
+    - To create edges (fights), you need to reference fighters by their `NodeIndex`.
+
+    Example:
+    ```rust
+    let a = graph.add_node("Fighter A");
+    let b = graph.add_node("Fighter B");
+    graph.add_edge(a, b, ());
+    ```
+
 3. Why do we calculate the degree of a node by counting its outgoing edges?
+
+    In a **directed graph**, each edge has a direction (e.g., Fighter A → Fighter B). The **outgoing edges** from a node represent actions initiated by that node — in this case, fights initiated or participated in.
+
+    Counting outgoing edges gives:
+    - A measure of how active a fighter is.
+    - A simple form of centrality — fighters with more fights (edges) are more central.
+
+    If the graph is **undirected**, then the degree would be the total number of connections (fights), regardless of direction.
 
 ## Challenge Questions:
 

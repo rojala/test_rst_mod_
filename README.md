@@ -54,3 +54,6 @@ Check .github/workflow
 
 ### Neo4J Graph Data Science Library Manual
 [See](module1/neo4j/Readme.md) for more details.
+
+### Calculating Centrality in a UFC Fighter Graph with Rust
+[See](module1/calculating-centrality/Readme.md) for more details.
