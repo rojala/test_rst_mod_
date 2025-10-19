@@ -24,4 +24,5 @@ fn main() {
         fruit_set.insert(generate_fruit());
     }
 
-    println!("Number of unique fruits generated: {}", fruit_set.len());cargo 
+    println!("Number of unique fruits generated: {}", fruit_set.len());
+}

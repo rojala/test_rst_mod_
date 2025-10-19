@@ -20,11 +20,38 @@ https://github.com/nogibjj/rust-data-engineering
 
 ## Reflection Questions:
 
-1. How does the generate_fruit() function ensure a random fruit is chosen every time it's called?
+### 1. How does `generate_fruit()` ensure a random fruit is chosen every time it's called?
 
-2. What is the purpose of using a HashSet in this program?
+    The function uses the `rand` crate's `SliceRandom::choose()` method along with `thread_rng()`:
 
-3. What would happen if you changed the HashSet to a different collection type, such as a Vec or LinkedList?
+    - `thread_rng()` creates a random number generator local to the current thread.
+    - `fruits.choose(&mut rng)` picks a random element from the `fruits` array using that RNG.
+
+    This means every time `generate_fruit()` is called, it randomly selects one of the 8 fruits, with equal probability, assuming a uniform distribution.
+
+### 2. What is the purpose of using a `HashSet` in this program?
+
+    A `HashSet` is used to **store only unique fruits**:
+
+    - When you insert a fruit into a `HashSet`, duplicates are automatically ignored.
+    - So even if `"Apple"` is randomly chosen 20 times, it will only appear once in the set.
+
+    This allows the program to count how many **distinct fruits** were generated out of the 100 attempts.
+
+### 3. hat would happen if you changed the `HashSet` to a different collection type, such as a `Vec` or `LinkedList`?
+
+    If you used a `Vec` or `LinkedList` instead:
+
+    - **Duplicates would be allowed**: Every fruit generated would be stored, even if it's the same as previous ones.
+    - You'd end up with 100 entries, but many of them would be repeats.
+    - To count unique fruits, you'd need to manually filter or deduplicate the collection afterward.
+
+    In short:
+    | Collection Type | Stores Unique? | Auto-Deduplication? | Final Count Meaning |
+    |------------------|----------------|----------------------|----------------------|
+    | `HashSet`        | ✅ Yes         | ✅ Yes               | Unique fruit count   |
+    | `Vec` / `LinkedList` | ❌ No      | ❌ No                | Total fruit draws    |
+
 
 ## Challenge Questions:
 
