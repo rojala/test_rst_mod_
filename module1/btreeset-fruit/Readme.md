@@ -22,9 +22,61 @@ Objective: In this lab, you will use the BTreeSet data structure in Rust to gene
 
 1. How does the use of BTreeSet affect the output of the program compared to if a HashSet was used?
 
+    Both `BTreeSet` and `HashSet` are **sets**, meaning they store **unique elements only**. However:
+
+    - **`BTreeSet` maintains elements in sorted order** (lexicographically for strings).
+    - **`HashSet` does not guarantee any order** — the output order will be arbitrary and may vary between runs.
+
+    **Example difference in output:**
+
+    ```rust
+    // Using BTreeSet
+    3: {"apple", "banana", "cherry"}
+
+    // Using HashSet
+    3: {"cherry", "banana", "apple"} // or any other order
+    ```
+
+    So, if you care about **consistent, sorted output**, `BTreeSet` is the right choice.
+
+
 2. What are the benefits of using a BTreeSet over other collection types?
 
+    | Feature            | `BTreeSet`                        | `HashSet`                        | `Vec` / `LinkedList`            |
+    |--------------------|-----------------------------------|----------------------------------|---------------------------------|
+    | Uniqueness         | ✅ Yes                            | ✅ Yes                           | ❌ No (duplicates allowed)      |
+    | Sorted order       | ✅ Yes (in-order traversal)       | ❌ No                            | ❌ No                           |
+    | Range queries      | ✅ Efficient (e.g., range search) | ❌ Not supported                 | ❌ Not efficient                |
+    | Memory usage       | Moderate                          | Lower (usually)                 | Lower                          |
+    | Performance        | Logarithmic insert/search         | Constant insert/search (avg)    | Linear search                  |
+
+    **Why choose `BTreeSet`:**
+    - You need **sorted output**.
+    - You want to perform **range queries** (e.g., get all elements between "banana" and "fig").
+    - You prefer **predictable iteration order**.
+
+
 3. What would happen if you changed the BTreeSet to a different collection type, such as a Vec or LinkedList?
+
+    By replacing `BTreeSet` with a `Vec` or `LinkedList`:
+
+    - **Duplicates may appear** unless you manually check for them.
+    - **No automatic sorting** — you'd need to sort manually if needed.
+    - **Insertion and lookup become less efficient** (linear time).
+
+    **Modified behavior:**
+    ```rust
+    let mut fruit_list = Vec::new();
+    for fruit in shuffled_fruits {
+        if !fruit_list.contains(&fruit) {
+            fruit_list.push(fruit);
+        }
+        if fruit_list.len() >= *amount {
+            break;
+        }
+    }
+    ```
+    This mimics set behavior but is less efficient and lacks automatic sorting.
 
 ## Challenge Questions:
 
