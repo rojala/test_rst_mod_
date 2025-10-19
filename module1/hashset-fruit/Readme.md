@@ -57,6 +57,11 @@ https://github.com/nogibjj/rust-data-engineering
 
 1. Modify the program to generate a user-specified number of random fruits. Hint: you'll need to use command-line arguments to get input from the user.
 
+    Default is 100 when --count is not given. To add custom count with command line use:
+    ``` rust
+    cargo run -- --count 20
+    ```
+
 2. How would you modify the program to keep track of how many times each fruit is generated? Hint: you might need to use a different collection type.
 
 3. Can you adjust the program to print out the list of unique fruits at the end?
