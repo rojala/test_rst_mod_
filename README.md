@@ -57,3 +57,6 @@ Check .github/workflow
 
 ### Calculating Centrality in a UFC Fighter Graph with Rust
 [See](module1/calculating-centrality/Readme.md) for more details.
+
+### External GitHub Lab: Generating Unique Fruits with Rust and HashSet
+[See](module1/hashset-fruit/Readme.md) for more details.
