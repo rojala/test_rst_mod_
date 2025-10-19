@@ -67,3 +67,22 @@ https://github.com/nogibjj/rust-data-engineering
     Changed HashSet to HashMap.
 
 3. Can you adjust the program to print out the list of unique fruits at the end?
+
+    ```rust
+    fruit_counts.keys().cloned().collect();
+    ```
+
+    This line is working with a `HashMap<&str, usize>` called `fruit_counts`, and it's used to extract a list of the unique fruit names. Here's what each part does:
+
+    - `fruit_counts.keys()`  
+    → Returns an iterator over the keys of the `HashMap`, which are `&str` references to fruit names.
+
+    - `.cloned()`  
+    → Converts each `&str` reference into a new owned `&str` (in this case, still `&str`, but if the map used `String` keys, this would clone them into new `String`s).  
+    → This is necessary because `keys()` gives you borrowed references, and you often want owned values when collecting.
+
+    - `.collect()`  
+    → Gathers the cloned keys into a new collection.  
+    → By default, Rust infers the type, but in code it's used as a `Vec<&str>`.
+
+    `Vec<&str>` contain all the unique fruit names that were generated, in arbitrary order (since `HashMap` doesn't preserve insertion order).

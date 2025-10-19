@@ -46,4 +46,8 @@ fn main() {
         "\nNumber of unique fruits generated: {}",
         fruit_counts.len()
     );
+
+    let unique_fruits: Vec<&str> = fruit_counts.keys().cloned().collect();
+    println!("\nUnique fruits generated ({}):", unique_fruits.len());
+    println!("{}", unique_fruits.join(", "));
 }
