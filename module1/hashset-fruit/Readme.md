@@ -64,4 +64,6 @@ https://github.com/nogibjj/rust-data-engineering
 
 2. How would you modify the program to keep track of how many times each fruit is generated? Hint: you might need to use a different collection type.
 
+    Changed HashSet to HashMap.
+
 3. Can you adjust the program to print out the list of unique fruits at the end?
