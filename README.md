@@ -60,3 +60,7 @@ Check .github/workflow
 
 ### External GitHub Lab: Generating Unique Fruits with Rust and HashSet
 [See](module1/hashset-fruit/Readme.md) for more details.
+
+### External GitHub Lab: Generating Unique Fruits with Rust and BTreeSet
+[See](module1/btreeset-fruit/Readme.md) for more details.
+
