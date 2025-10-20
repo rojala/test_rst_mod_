@@ -82,6 +82,10 @@ Objective: In this lab, you will use the BTreeSet data structure in Rust to gene
 
 1. Modify the program to include the capability to remove a fruit from the BTreeSet. Hint: you'll need to use command-line arguments to get input from the user.
 
+    ```rust
+    cargo run -- --remove banana
+    ```
+
 2. Can you adjust the program to print out the list of unique fruits at the end in reverse order? Hint: look up how to iterate over a BTreeSet in reverse order in Rust.
 
 3. How would you modify the program to keep track of how many times each fruit is generated? Hint: you might need to use a different collection type.
