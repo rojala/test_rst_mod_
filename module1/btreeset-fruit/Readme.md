@@ -93,3 +93,7 @@ Objective: In this lab, you will use the BTreeSet data structure in Rust to gene
     - `all_selected.extend(fruit_set)` accumulates all unique fruits across iterations.
 
 3. How would you modify the program to keep track of how many times each fruit is generated? Hint: you might need to use a different collection type.
+
+    - Added `HashMap<&str, usize>` to count how many times each fruit appears.
+    - Used `.entry(fruit).or_insert(0)` to increment the count safely.
+    - Printed the final counts after all selections.
