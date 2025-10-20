@@ -27,6 +27,7 @@ fn main() {
     ];
     let amounts = [1, 3, 5, 7, 9];
 
+    let mut all_selected = BTreeSet::new();
     let mut rng = thread_rng();
 
     for amount in amounts.iter() {
@@ -47,5 +48,9 @@ fn main() {
         }
 
         println!("{}: {:?}", amount, fruit_set);
+        all_selected.extend(fruit_set);
     }
+
+    println!("\nAll unique fruits selected (reversed):");
+    println!("{:?}", all_selected.iter().rev() );
 }
