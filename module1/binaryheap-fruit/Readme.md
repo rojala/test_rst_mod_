@@ -66,4 +66,18 @@ https://github.com/nogibjj/rust-data-engineering
 
 2. Can you adjust the program to print out the list of unique fruits at the end in reverse order? Hint: look up how to iterate over a BinaryHeap in reverse order in Rust.
 
-3.How would you modify the program to keep track of how many times each fruit is generated? Hint: you might need to use a different collection type.
+    Loop BinaryHeap with iterator in reverse order. With help of hasmap (seen) store unique fruit in vec (unique_name).
+
+    ```rust
+    for fruit in fruit_salad.clone().into_sorted_vec().iter().rev() {
+        let name = match fruit {
+            Fruit::Fig => "Fig".to_string(),
+            Fruit::Other(name) => name.clone(),
+        };
+        if seen.insert(name.clone()) {
+            unique_names.push(name);
+        }
+    }
+    ```
+
+3. How would you modify the program to keep track of how many times each fruit is generated? Hint: you might need to use a different collection type.

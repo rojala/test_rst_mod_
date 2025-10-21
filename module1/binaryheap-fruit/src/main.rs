@@ -14,7 +14,7 @@ struct Args {
     remove: Option<String>,
 }
 
-#[derive(Eq, PartialEq, Debug)]
+#[derive(Eq, PartialEq, Debug, Clone)]
 enum Fruit {
     Fig,
     Other(String),
@@ -74,7 +74,7 @@ fn remove_fruit(heap: BinaryHeap<Fruit>, target: &str) -> BinaryHeap<Fruit> {
 fn main() {
     let args = Args::parse();
     let fruit_salad = generate_fruit_salad();
-    
+
     let fruit_salad = if let Some(fruit_to_remove) = args.remove {
         println!("Removing fruit: {}", fruit_to_remove);
         remove_fruit(fruit_salad, &fruit_to_remove)
@@ -83,10 +83,30 @@ fn main() {
     };
 
     println!("Random Fruit Salad With Two Servings of Figs:");
-    for fruit in fruit_salad.into_sorted_vec() {
+    for fruit in fruit_salad.clone().into_sorted_vec() {
         match fruit {
             Fruit::Fig => println!("Fig"),
             Fruit::Other(fruit_name) => println!("{}", fruit_name),
         }
+    }
+
+    use std::collections::HashSet;
+
+    let mut unique_names = Vec::new();
+    let mut seen = HashSet::new();
+
+    for fruit in fruit_salad.clone().into_sorted_vec().iter().rev() {
+        let name = match fruit {
+            Fruit::Fig => "Fig".to_string(),
+            Fruit::Other(name) => name.clone(),
+        };
+        if seen.insert(name.clone()) {
+            unique_names.push(name); // preserve reverse order of first-seen unique fruits
+        }
+    }
+
+    println!("\nRandom fruits in reverse order (unique only)");
+    for name in unique_names {
+        println!("{}", name);
     }
 }
