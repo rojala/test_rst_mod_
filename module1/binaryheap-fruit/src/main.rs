@@ -1,9 +1,20 @@
+use clap::Parser;
 use rand::seq::SliceRandom;
 use rand::thread_rng;
 use std::cmp::Ord;
 use std::collections::BinaryHeap;
 
-#[derive(Eq, PartialEq)]
+/// Command-line arguments
+#[derive(Parser)]
+#[command(name = "Fruit Salad Generator")]
+#[command(about = "Generates a fruit salad with figs and optional removal", long_about = None)]
+struct Args {
+    /// Fruit to remove (e.g., Fig or Apple)
+    #[arg(short, long)]
+    remove: Option<String>,
+}
+
+#[derive(Eq, PartialEq, Debug)]
 enum Fruit {
     Fig,
     Other(String),
@@ -48,8 +59,29 @@ fn generate_fruit_salad() -> BinaryHeap<Fruit> {
     fruit_salad
 }
 
+fn remove_fruit(heap: BinaryHeap<Fruit>, target: &str) -> BinaryHeap<Fruit> {
+    let filtered = heap
+        .into_iter()
+        .filter(|fruit| match fruit {
+            Fruit::Fig => target.to_lowercase() != "fig",
+            Fruit::Other(name) => name.to_lowercase() != target.to_lowercase(),
+        })
+        .collect::<Vec<_>>();
+
+    BinaryHeap::from(filtered)
+}
+
 fn main() {
+    let args = Args::parse();
     let fruit_salad = generate_fruit_salad();
+    
+    let fruit_salad = if let Some(fruit_to_remove) = args.remove {
+        println!("Removing fruit: {}", fruit_to_remove);
+        remove_fruit(fruit_salad, &fruit_to_remove)
+    } else {
+        fruit_salad
+    };
+
     println!("Random Fruit Salad With Two Servings of Figs:");
     for fruit in fruit_salad.into_sorted_vec() {
         match fruit {

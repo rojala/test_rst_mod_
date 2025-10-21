@@ -55,6 +55,15 @@ https://github.com/nogibjj/rust-data-engineering
 
 1. Modify the program to include the capability to remove a fruit from the BinaryHeap. Hint: you'll need to use command-line arguments to get input from the user.
 
+    Created a remove_fruit Function and since BinaryHeap doesn’t support direct removal:
+    - Converted the heap into a Vec<Fruit> using .into_iter().
+    - Filtered out the fruit matching the user’s input.
+    - Rebuilt a new BinaryHeap from the filtered list.
+
+    ```rust
+    cargo run -- --remove Apple
+    ```
+
 2. Can you adjust the program to print out the list of unique fruits at the end in reverse order? Hint: look up how to iterate over a BinaryHeap in reverse order in Rust.
 
 3.How would you modify the program to keep track of how many times each fruit is generated? Hint: you might need to use a different collection type.
