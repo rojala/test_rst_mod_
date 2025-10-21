@@ -21,9 +21,35 @@ https://github.com/nogibjj/rust-data-engineering
 
 1. How does the use of BinaryHeap affect the output of the program compared to if a HashSet or BTreeSet was used?
 
+    Using a `BinaryHeap<Fruit>` means the fruits are stored in a **max-heap**, where the highest-priority item (in this case, `Fruit::Fig`) is always at the top. When you call `.into_sorted_vec()`, it returns the fruits **sorted from highest to lowest priority** — so `Fig` will appear first.
+
+    `HashSet`
+    - **No duplicates**: You’d lose multiple `Fig`s since `HashSet` only keeps unique items.
+    - **No ordering**: The output order would be arbitrary and unpredictable.
+
+    `BTreeSet`
+    - **Sorted order**: You’d get a sorted set, but only **one instance** of each fruit due to uniqueness.
+    - **Custom ordering**: You could still define `Ord`, but duplicates would be discarded.
+
 2. What are the benefits of using a BinaryHeap over other collection types?
+    - **Priority-based ordering**: Ideal for scenarios where you want to process or display items by importance.
+    - **Efficient top access**: `peek()` gives you the highest-priority item in constant time.
+    - **Allows duplicates**: Unlike sets, you can have multiple `Fig`s.
+
+    This makes `BinaryHeap` perfect for your fruit salad logic, where you want to ensure **at least two `Fig`s** and show them **first**.
 
 3. What would happen if you changed the BinaryHeap to a different collection type, such as a Vec or LinkedList?
+
+    `Vec<Fruit>`:
+    - **Preserves insertion order**.
+    - You’d need to manually sort it if you want priority-based output.
+    - Allows duplicates, but no automatic ordering.
+
+    `LinkedList<Fruit>`:
+    - Similar to `Vec`, but optimized for **frequent insertions/removals** at both ends.
+    - Still no automatic ordering — you'd need to sort manually.
+
+    So, switching to `Vec` or `LinkedList` would give you more control over order and structure, but you'd lose the **automatic prioritization** that `BinaryHeap` provides.
 
 ## Challenge Questions:
 
