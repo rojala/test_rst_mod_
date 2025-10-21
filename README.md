@@ -64,3 +64,9 @@ Check .github/workflow
 ### External GitHub Lab: Generating Unique Fruits with Rust and BTreeSet
 [See](module1/btreeset-fruit/Readme.md) for more details.
 
+### External GitHub Lab: Generating Unique Fruits with Rust and BTreeSet
+[See](module1/btreeset-fruit/Readme.md) for more details.
+
+### External GitHub Lab: Generating Fruit Salad with Rust and BinaryHeap
+[See](module1/binaryheap-fruit/Readme.md) for more details.
+
