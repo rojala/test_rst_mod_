@@ -81,3 +81,24 @@ https://github.com/nogibjj/rust-data-engineering
     ```
 
 3. How would you modify the program to keep track of how many times each fruit is generated? Hint: you might need to use a different collection type.
+
+    Use `HashMap` to store fruit and count.
+
+    ```rust
+    let mut fruit_counts = HashMap::new();
+    for fruit in fruit_salad.clone() {
+        let name = match fruit {
+            Fruit::Fig => "Fig".to_string(),
+            Fruit::Other(name) => name.clone(),
+        };
+        *fruit_counts.entry(name).or_insert(0) += 1;
+    }
+
+    ...
+
+    println!("\nFruits with count");
+    for (fruit, count) in fruit_counts {
+        println!("{} {}", fruit, count);
+    }
+    ```
+

@@ -2,7 +2,7 @@ use clap::Parser;
 use rand::seq::SliceRandom;
 use rand::thread_rng;
 use std::cmp::Ord;
-use std::collections::BinaryHeap;
+use std::collections::{BinaryHeap, HashMap, HashSet};
 
 /// Command-line arguments
 #[derive(Parser)]
@@ -14,7 +14,7 @@ struct Args {
     remove: Option<String>,
 }
 
-#[derive(Eq, PartialEq, Debug, Clone)]
+#[derive(Eq, PartialEq, Debug, Clone, Hash)]
 enum Fruit {
     Fig,
     Other(String),
@@ -90,7 +90,14 @@ fn main() {
         }
     }
 
-    use std::collections::HashSet;
+    let mut fruit_counts = HashMap::new();
+    for fruit in fruit_salad.clone() {
+        let name = match fruit {
+            Fruit::Fig => "Fig".to_string(),
+            Fruit::Other(name) => name.clone(),
+        };
+        *fruit_counts.entry(name).or_insert(0) += 1;
+    }
 
     let mut unique_names = Vec::new();
     let mut seen = HashSet::new();
@@ -108,5 +115,10 @@ fn main() {
     println!("\nRandom fruits in reverse order (unique only)");
     for name in unique_names {
         println!("{}", name);
+    }
+
+    println!("\nFruits with count");
+    for (fruit, count) in fruit_counts {
+        println!("{} {}", fruit, count);
     }
 }
