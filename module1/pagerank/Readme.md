@@ -33,9 +33,36 @@ https://github.com/nogibjj/rust-data-engineering
 
 1. How does the PageRank algorithm calculate the importance of each node in the graph?
 
+    - Each node (webpage) starts with an equal rank: \( \frac{1}{N} \), where \(N\) is the total number of nodes.  
+    - At each iteration:
+        - A node distributes its current rank equally among all the nodes it links to.  
+        - The new rank of a node is the sum of contributions it receives from all incoming links.  
+        - After contributions are summed, the damping factor is applied to model the probability of a "random surfer" continuing to follow links versus jumping to a random page.  
+
+* Formula (simplified)
+$$
+PR(i) = \frac{1-d}{N} + d \cdot \sum_{j \in M(i)} \frac{PR(j)}{L(j)}
+$$
+* Where:
+    - \( PR(i) \) = PageRank of node \(i\)  
+    - \( d \) = damping factor (usually 0.85)  
+    - \( M(i) \) = set of nodes linking to \(i\)  
+    - \( L(j) \) = number of outbound links from node \(j\)  
+
 2. What is the effect of the damping factor on the PageRank algorithm?
+    - **Interpretation:** It represents the probability that a user continues clicking links instead of jumping to a random page.
+    - **High damping (close to 1.0):** Ranks are dominated by link structure, but risk "rank sinks" (nodes trapping rank in cycles).
+    - **Low damping (closer to 0.0):** Ranks are more evenly distributed, reducing the influence of link structure.
+    - **Typical value (0.85):** Balances realism (users follow links) with stability (avoids infinite loops).
 
 3. What is the purpose of running the algorithm for a certain number of iterations?
+
+    - PageRank is an **iterative algorithm** that converges to a stable distribution of ranks.
+    - Each iteration refines the rank values by redistributing contributions.
+    - After enough iterations, the values stabilize (convergence), meaning further iterations won’t significantly change results.
+    - In practice:
+        - **Small graphs:** Converge quickly (10–20 iterations).
+        - **Large graphs (like the web):** Require more iterations or until a convergence threshold (e.g., changes < 0.0001) is reached.
 
 ## Challenge Questions:
 
