@@ -74,8 +74,24 @@ impl PageRank {
                 *rank = *rank * self.damping + (1.0 - self.damping) / (n as f64);
             }
 
+            // Normalize after each iteration
+            let sum: f64 = new_ranks.iter().sum();
+            if sum > 0.0 {
+                for rank in &mut new_ranks {
+                    *rank /= sum;
+                }
+            }
+
             // Replaces the old PageRank values with the new ones.
             ranks = new_ranks;
+        }
+
+        // Normalize so that ranks sum to 1
+        let sum: f64 = ranks.iter().sum();
+        if sum > 0.0 {
+            for rank in &mut ranks {
+                *rank /= sum;
+            }
         }
 
         // Returns the final PageRank values.

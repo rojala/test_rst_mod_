@@ -84,4 +84,77 @@ $$
 
 2. Can you adapt the PageRank algorithm to work with other types of data, such as social networks or citation networks?
 
+
+    * How PageRank generalizes
+        - **Nodes** = entities (websites, people, papers, proteins, etc.)
+        - **Edges** = relationships (links, friendships, citations, interactions)
+        - **Rank** = importance, influence, or centrality of a node in the network
+
+    The algorithm doesn’t care whether the nodes are web pages or something else — as long as you can define directed edges, you can apply it.
+
+    * Examples of adaptations
+        - **Social networks**  
+            - Nodes: users  
+            - Edges: follower/friend relationships  
+            - PageRank highlights influential users (those followed by other influential users).  
+            - Twitter actually used a PageRank-like algorithm in its early ranking of accounts.
+
+    * Citation networks
+        - Nodes: academic papers  
+        - Edges: citations (paper A cites paper B)  
+        - PageRank identifies foundational or highly influential papers, not just by raw citation count but by *who* is citing them.
+
+    * Biological networks
+        - Nodes: proteins or genes  
+        - Edges: interactions or regulatory relationships  
+        - PageRank can help identify key regulators in biological pathways.
+
+    * Recommendation systems
+        - Nodes: users and items  
+        - Edges: interactions (user bought item, watched movie, etc.)  
+        - PageRank variants can surface popular or influential items.
+
+    * What changes when adapting
+        - **Graph construction**: define what counts as a node and what counts as a link.  
+        - **Edge weighting**: In some domains, edges aren’t equal. For example, a citation from a top-tier journal might carry more weight than one from a minor venue.
+        - **Interpretation of rank**: On the web, rank ≈ importance. In social networks, rank ≈ influence. In biology, rank ≈ functional significance.  
+
+    * Variants
+
+        Researchers have developed many PageRank variants for different contexts:
+        - **Personalized PageRank**: Biases the random walk toward certain nodes (useful in recommendations).  
+        - **Weighted PageRank**: Edges have different strengths.  
+        - **Topic-sensitive PageRank**: Multiple PageRank vectors tuned to different topics.  
+
+
+    PageRank is essentially a **general-purpose centrality measure** for directed graphs. The trick is in howto model data as a graph and what assign to the resulting scores.
+
 3. How would you modify the program to normalize the PageRank values so that they sum to 1?
+
+    In current implementation, the iterative process already tends to keep values close to normalized, but due to floating‑point rounding or custom modifications (like expansion), the sum may drift. To guarantee normalization, it is possible to add a final normalization step.
+
+    ```rust
+    // Returns the final PageRank values.
+    let sum: f64 = ranks.iter().sum();
+    if sum > 0.0 {
+        for rank in &mut ranks {
+            *rank /= sum;
+        }
+    }
+    ranks
+    ```
+
+    Or in iteration loop for each iteration
+    
+    ```rust
+    // Normalize after each iteration
+    let sum: f64 = new_ranks.iter().sum();
+    if sum > 0.0 {
+        for rank in &mut new_ranks {
+            *rank /= sum;
+        }
+    }
+
+    // Replaces the old PageRank values with the new ones.
+    ranks = new_ranks;
+    ```
