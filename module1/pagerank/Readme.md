@@ -68,6 +68,20 @@ $$
 
 1. Modify the program to accept an input graph from the user. The user should be able to specify the number of nodes and the connections between them.
 
+    Follwoing optins added:
+
+    ```bash
+    Usage: pagerank [OPTIONS]
+
+    Options:
+    -i, --iterations <ITERATIONS>  Number of iterations [default: 100]
+    -d, --damping <DAMPING>        Damping factor (usually 0.85) [default: 0.85]
+        --edge <EDGES>             Edges in the graph, entered as name pairs: A:B Example: --edge ESPN:NFL --edge NBA:UFC
+        --expand <EXPAND>          Optional expansion factor to scale printed PageRank values (originals are preserved) Example: --expand 100 prints percentages; default 1.0 prints originals [default: 1]
+    -h, --help                     Print help
+    -V, --version                  Print version
+    ```
+
 2. Can you adapt the PageRank algorithm to work with other types of data, such as social networks or citation networks?
 
 3. How would you modify the program to normalize the PageRank values so that they sum to 1?
