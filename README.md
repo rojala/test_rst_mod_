@@ -70,3 +70,5 @@ Check .github/workflow
 ### External GitHub Lab: Generating Fruit Salad with Rust and BinaryHeap
 [See](module1/binaryheap-fruit/Readme.md) for more details.
 
+### External GitHub Lab: PageRank Algorithm in Rust
+[See](module1/pagerank/Readme.md) for more details.
