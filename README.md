@@ -72,3 +72,6 @@ Check .github/workflow
 
 ### External GitHub Lab: PageRank Algorithm in Rust
 [See](module1/pagerank/Readme.md) for more details.
+
+### External GitHub Lab: Shortest Path Algorithm in Rust
+[See](module1/lisbon-shortest-path/Readme.md) for more details.
