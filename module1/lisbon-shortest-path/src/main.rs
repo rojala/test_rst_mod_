@@ -14,6 +14,10 @@ struct Args {
     /// Destination landmark name
     #[arg(short, long)]
     end: Option<String>,
+
+    /// Custom connections in format Foo:Bar:Distance
+    #[arg(long)]
+    distance: Vec<String>,
 }
 
 fn main() {
@@ -37,7 +41,7 @@ fn main() {
     ]);
 
     // Bind names to node
-    let name_to_node: HashMap<&str, NodeIndex> = [
+    let mut name_to_node: HashMap<&str, NodeIndex> = [
         ("Belem Tower", belem_tower),
         ("Jerónimos Monastery", monastery),
         ("LX Factory", lx_factory),
@@ -48,11 +52,56 @@ fn main() {
     .cloned()
     .collect();
 
+    // Add custom connections from --distance
+    for entry in &args.distance {
+        let parts: Vec<&str> = entry.split(':').collect();
+        if parts.len() != 3 {
+            eprintln!(
+                "Invalid --distance format: '{}'. Use LandmarkA:LandmarkB:10",
+                entry
+            );
+            continue;
+        }
+
+        let from = parts[0].trim();
+        let to = parts[1].trim();
+        let dist = match parts[2].trim().parse::<u32>() {
+            Ok(d) => d,
+            Err(_) => {
+                eprintln!("Invalid distance value in '{}'", entry);
+                continue;
+            }
+        };
+
+        let from_node = *name_to_node
+            .entry(from)
+            .or_insert_with(|| graph.add_node(from));
+        let to_node = *name_to_node.entry(to).or_insert_with(|| graph.add_node(to));
+
+        graph.add_edge(from_node, to_node, dist);
+    }
+
     let start_name = args.start.unwrap_or_else(|| "Belem Tower".to_string());
     let end_name = args.end.unwrap_or_else(|| "Lisbon Cathedral".to_string());
 
     let start_node = name_to_node.get(start_name.as_str());
     let end_node = name_to_node.get(end_name.as_str());
+
+    println!("\n");
+
+    for l in name_to_node.iter() {
+        println!("Name {:?}", l);
+    }
+
+    println!("\nStored graph edges:");
+    for edge in graph.edge_references() {
+        let source = graph[edge.source()];
+        let target = graph[edge.target()];
+        let weight = edge.weight();
+        println!(" - {} <-> {} : {} km", source, target, weight);
+    }
+
+    println!("\n");
 
     match (start_node, end_node) {
         (Some(&start), Some(&end)) => {

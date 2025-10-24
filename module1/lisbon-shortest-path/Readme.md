@@ -65,4 +65,8 @@ https://github.com/nogibjj/rust-data-engineering
 
 2. Expand the graph to include more landmarks and connections.
 
+    ```bash
+    cargo run --   --start "Belem Tower"   --end "Gulbenkian Museum"   --distance "Belem Tower:Gulbenkian Museum:12"   --distance "New Spot:Commerce Square:4"
+    ```
+
 3. Can you think of other real-life applications for Dijkstra's algorithm?
