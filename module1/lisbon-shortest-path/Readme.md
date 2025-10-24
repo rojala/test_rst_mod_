@@ -70,3 +70,10 @@ https://github.com/nogibjj/rust-data-engineering
     ```
 
 3. Can you think of other real-life applications for Dijkstra's algorithm?
+    Dijkstra's algorithm is widely used in various real-life applications, including:
+    - **GPS Navigation Systems**: Finding the shortest route between two locations on a map.
+    - **Network Routing Protocols**: Determining the most efficient path for data packets to travel across a network.
+    - **Robotics**: Pathfinding for autonomous robots to navigate through environments.
+    - **Game Development**: AI pathfinding for characters to move efficiently within game worlds.
+    - **Urban Planning**: Optimizing public transportation routes and infrastructure development.
+    - [Dijkstra's Algorithm - Wikipedia](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm)
