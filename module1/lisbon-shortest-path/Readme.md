@@ -59,6 +59,10 @@ https://github.com/nogibjj/rust-data-engineering
 
 1. Modify the program to allow the user to specify the start and end nodes.
 
+    ```bash
+    cargo run -- --start "Belem Tower" --end "Lisbon Cathedral"
+    ```
+
 2. Expand the graph to include more landmarks and connections.
 
 3. Can you think of other real-life applications for Dijkstra's algorithm?
