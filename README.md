@@ -75,3 +75,6 @@ Check .github/workflow
 
 ### External GitHub Lab: Shortest Path Algorithm in Rust
 [See](module1/lisbon-shortest-path/Readme.md) for more details.
+
+### External GitHub Lab: Community Detection in Rust
+[See](module1/community-detection/Readme.md) for more details.
