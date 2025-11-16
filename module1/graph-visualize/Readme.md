@@ -361,6 +361,61 @@ Lisbon > Madrid > Paris > Berlin > Copenhagen > Stockholm > Moscow
 
 1. Modify the code to visualize data from a file.
 
+  **Original Hardcoded Version**
+  ```rust
+  let cities = vec!["Lisbon", "Madrid", "Paris", "Berlin", "Copenhagen", "Stockholm", "Moscow"];
+  let distances_travelled = vec![0.0, 502.56, 1053.36, 2187.27, 2636.42, 3117.23, 4606.35];
+
+  plot(distances_travelled.into_iter().map(|d| d as f64).collect(), Config::default()...)
+  ```
+
+  **Read form JSON File**
+
+  1. **Data File Changes:**
+    ```json
+    [
+        {"city": "Lisbon", "distance": 0.0},
+        {"city": "Madrid", "distance": 502.56},
+        ...
+    ]
+    ```
+
+  2. **Code Changes:**
+  - **Added dependencies**:
+    ```toml
+    serde = { version = "1.0", features = ["derive"] }
+    serde_json = "1.0"
+    ```
+  - **Added struct definition**:
+    ```rust
+    #[derive(Debug, Serialize, Deserialize)]
+    struct CityData {
+        city: String,
+        distance: f64,
+    }
+    ```
+  - **Added JSON parsing**:
+    ```rust
+    let city_data: Vec<CityData> = serde_json::from_str(&file_content)
+        .expect("Failed to parse JSON data");
+    ```
+  - **Changed data extraction**:
+    ```rust
+    let cities: Vec<String> = city_data.iter().map(|data| data.city.clone()).collect();
+    let distances_travelled: Vec<f64> = city_data.iter().map(|data| data.distance).collect();
+    ```
+  - **Additional Imports:**
+  ```rust
+  use serde::{Deserialize, Serialize};
+  ```
+
+  **JSON Version Advantages:**
+  - Type safety with serde
+  - Self-documenting structure
+  - Easy to extend with new fields
+  - Industry standard format
+  - Better for complex data relationships
+
 2. How might you use a graph like this to detect patterns in the data?
 
 3. Extend the functionality to create more complex visualizations, such as multiple line graphs or bar charts.

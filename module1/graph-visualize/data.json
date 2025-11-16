@@ -1,0 +1,30 @@
+[
+    {
+        "city": "Lisbon",
+        "distance": 0.0
+    },
+    {
+        "city": "Madrid",
+        "distance": 502.56
+    },
+    {
+        "city": "Paris",
+        "distance": 1053.36
+    },
+    {
+        "city": "Berlin",
+        "distance": 2187.27
+    },
+    {
+        "city": "Copenhagen",
+        "distance": 2636.42
+    },
+    {
+        "city": "Stockholm",
+        "distance": 3117.23
+    },
+    {
+        "city": "Moscow",
+        "distance": 4606.35
+    }
+]
