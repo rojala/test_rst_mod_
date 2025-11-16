@@ -78,3 +78,6 @@ Check .github/workflow
 
 ### External GitHub Lab: Community Detection in Rust
 [See](module1/community-detection/Readme.md) for more details.
+
+### External GitHub Lab: Graph Visualization in Rust
+[See](module1/graph-visualize/Readme.md) for more details.
