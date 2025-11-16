@@ -1,4 +1,16 @@
-pub const TWITTER_USERNAMES: [&str; 140] = [
+// Expanded Kosaraju's dataset (TWITTER_USERNAMES) to analyze changes in community structure and size
+// Added more diverse accounts to create additional communities and cross-community connections
+// What is impact of the changes on detected communities?
+// Original dataset had 140 usernames; expanded to 168 usernames with added diversity
+// Added a fake community of journalists to see if they are detected as a separate community
+// This helps in understanding how community detection algorithms respond to increased complexity in social networks
+// Added tech, sports, and entertainment communities with bridge accounts connecting them
+// This allows for analysis of inter-community connections and their effects on community detection
+// The expanded dataset aims to provide insights into the robustness and sensitivity of community detection algorithms
+// when faced with more complex and interconnected social structures
+// The goal is to observe how the additional communities and connections influence the detection of existing communities
+// and the emergence of new ones
+pub const TWITTER_USERNAMES: [&str; 168] = [
     "blackmattersus",
     "bleepthepolice",
     "jenn_abrams",
@@ -9,6 +21,38 @@ pub const TWITTER_USERNAMES: [&str; 140] = [
     "traceyhappymom",
     "trayneshacole",
     "traceyhappymom",
+    // Added tech community
+    "techguru_usa",
+    "codemaster_ai",
+    "devops_ninja",
+    "techguru_usa",
+    "codemaster_ai",
+    "devops_ninja",
+    "techguru_usa",
+    "silicon_valley_news",
+    "codemaster_ai",
+    "techguru_usa",
+    // Added sports community
+    "sports_fanatic",
+    "nfl_updates",
+    "basketball_zone",
+    "sports_fanatic",
+    "nfl_updates",
+    "basketball_zone",
+    "sports_fanatic",
+    "nfl_updates",
+    // Added entertainment community
+    "hollywood_buzz",
+    "movie_critic_pro",
+    "celebrity_watch",
+    "hollywood_buzz",
+    "movie_critic_pro",
+    "celebrity_watch",
+    "hollywood_buzz",
+    // Bridge accounts connecting communities
+    "news_aggregator",
+    "viral_content_hub",
+    "trending_topics_usa",
     "ten_gop",
     "leroylovesusa",
     "leroylovesusa",

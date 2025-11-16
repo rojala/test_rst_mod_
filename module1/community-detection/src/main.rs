@@ -27,9 +27,18 @@ fn main() {
 
     // Use the Kosaraju's algorithm to detect strongly connected components
     let scc = kosaraju_scc(&graph);
-    for component in scc {
-        println!("{} nodes in community discovered", component.len());
-        let usernames: Vec<&str> = component
+    
+    println!("Total communities found: {}", scc.len());
+    
+    // Print size of each community
+    for (i, component) in scc.iter().enumerate() {
+        println!("Community {}: {} nodes", i + 1, component.len());
+    }
+    
+    // Find the largest community
+    if let Some(largest_component) = scc.iter().max_by_key(|component| component.len()) {
+        println!("\nLargest community has {} nodes:", largest_component.len());
+        let usernames: Vec<&str> = largest_component
             .iter()
             .map(|&node_index| graph[node_index])
             .collect();
