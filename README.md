@@ -81,3 +81,6 @@ Check .github/workflow
 
 ### External GitHub Lab: Graph Visualization in Rust
 [See](module1/graph-visualize/Readme.md) for more details.
+
+### Lessons reflection / moudule 1
+[See](module1/Readme.md) for more details.
