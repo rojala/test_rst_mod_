@@ -418,5 +418,66 @@ Lisbon > Madrid > Paris > Berlin > Copenhagen > Stockholm > Moscow
 
 2. How might you use a graph like this to detect patterns in the data?
 
+    Detecting Patterns with the Graph
+    **Trend Analysis**  
+    - Look for **increasing or decreasing sequences** in the distances.  
+    - Example: If the graph steadily rises, it indicates longer trips over time; if it falls, trips are getting shorter.
+
+    **Outliers / Anomalies**  
+    - Sharp spikes or drops in the graph highlight unusual trips.  
+    - Example: A single very long distance compared to others might suggest a special journey or data error.
+
+    **Consistency / Regularity**  
+    - Flat or repeating patterns show **consistent travel distances**.  
+    - Example: If the graph oscillates between two levels, it might mean alternating short and long trips.
+
+    **Comparisons Between Cities**  
+    - Since you print the city sequence (`cities.join(" > ")`), you can visually align the graph with the city order.  
+    - This helps you see which cities correspond to longer or shorter distances.
+
+    **Clustering**  
+    - Groups of similar values will appear as plateaus or clusters in the graph.  
+    - Example: Several consecutive trips of ~50 km will form a flat region.
+
+
 3. Extend the functionality to create more complex visualizations, such as multiple line graphs or bar charts.
 
+    ```ascii
+    Lisbon > Madrid > Paris > Berlin > Copenhagen > Stockholm > Moscow
+      4606   ┤     ╭ 
+      4146   ┤     │ 
+      3685   ┤     │ 
+      3224   ┤    ╭╯ 
+      2764   ┤   ╭╯  
+      2303   ┤  ╭╯   
+      1843   ┤  │    
+      1382   ┤  │    
+       921   ┤ ╭╯    
+       461   ┤╭╯     
+         0   ┼╯     
+                Travelled distances (km)
+      3685   ┤     ╭ 
+      3317   ┤     │ 
+      2948   ┤     │ 
+      2580   ┤    ╭╯ 
+      2211   ┤   ╭╯  
+      1843   ┤  ╭╯   
+      1474   ┤  │    
+      1106   ┤  │    
+       737   ┤ ╭╯    
+       369   ┤╭╯     
+         0   ┼╯     
+                Alternative route distances (km)
+      1489   ┤    ╭ 
+      1385   ┤    │ 
+      1281   ┤    │ 
+      1177   ┤ ╭╮ │ 
+      1073   ┤ ││ │ 
+       969   ┤ ││ │ 
+       865   ┤ ││ │ 
+       761   ┤ ││ │ 
+       657   ┤ ││ │ 
+       553   ┼─╯│╭╯ 
+       449   ┤  ╰╯ 
+                Differences between consecutive trips (km)
+    ```
