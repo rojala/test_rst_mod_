@@ -84,3 +84,6 @@ Check .github/workflow
 
 ### Lessons reflection / moudule 1
 [See](module1/Readme.md) for more details.
+
+### Final week-reflection
+[See](final-week-reflection/Readme.md) for more details.
