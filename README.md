@@ -87,3 +87,6 @@ Check .github/workflow
 
 ### Final week-reflection
 [See](final-week-reflection/Readme.md) for more details.
+
+### Final challenge
+[See](final_challenge_ufc/Readme.md) for more details.
