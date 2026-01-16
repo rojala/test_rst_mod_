@@ -95,3 +95,6 @@ Check .github/workflow
 ## Module 2
 ### Mutable fruit salad
 [See](module2/fruit_vector_lab/Readme.md) for more details.
+
+### Customize fruit salad with a CLI
+[See](module2/cli-customize-fruit-salad/Readme.md) for more details.
