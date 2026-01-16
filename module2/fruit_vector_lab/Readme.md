@@ -111,4 +111,40 @@ cargo test
 
 ## 2. How would you modify the program to sort the fruits alphabetically?
 
+**Solution Implemented:**
+
+The `sort_fruits()` function sorts a mutable Vector of fruits alphabetically:
+
+```rust
+fn sort_fruits(vector: &mut Vec<&str>) {
+    vector.sort();
+}
+```
+
+**Usage with Clap:**
+Add the `--sort` or `-s` flag to sort the fruits:
+
+```bash
+cargo run -- --fruit banana --sort
+cargo run -- -f apple -s
+```
+
+**How it works:**
+- Uses the built-in `sort()` method on Vec, which sorts in-place
+- The `sort()` method uses lexicographic (alphabetical) ordering for strings
+- You can combine `--sort` with `--fruit` to remove a fruit AND sort the remaining fruits
+- Example output shows fruits sorted alphabetically after removal
+
+### Test Coverage for Sorting:
+
+1. **test_sort_fruits_basic** - Verifies basic alphabetical sorting
+2. **test_sort_fruits_already_sorted** - Tests vector already in sorted order
+3. **test_sort_fruits_reverse_order** - Tests sorting from reverse alphabetical order
+4. **test_sort_fruits_with_duplicates** - Ensures duplicates are preserved and sorted correctly
+5. **test_sort_fruits_single_element** - Tests sorting with one element
+6. **test_sort_fruits_empty_vector** - Tests sorting with an empty vector
+7. **test_sort_fruits_with_special_characters** - Tests with multi-character fruit names
+
+All 14 tests pass successfully! ✓
+
 ## 3. Can you extend the program to count the occurrences of each fruit in the Vector?

@@ -7,6 +7,10 @@ struct Args {
     /// The fruit name to remove from the vector
     #[arg(short, long)]
     fruit: String,
+    
+    /// Sort fruits alphabetically
+    #[arg(short, long)]
+    sort: bool,
 }
 
 /// Function to remove a specific fruit from a vector
@@ -17,6 +21,11 @@ fn remove_fruit(vector: &mut Vec<&str>, fruit_name: &str) -> bool {
     } else {
         false
     }
+}
+
+/// Function to sort fruits alphabetically
+fn sort_fruits(vector: &mut Vec<&str>) {
+    vector.sort();
 }
 
 fn main() {
@@ -38,6 +47,12 @@ fn main() {
     }
 
     println!("\nModified fruit salad: {:?}", fruit_salad);
+    
+    // Sort fruits alphabetically if --sort flag is provided
+    if args.sort {
+        sort_fruits(&mut fruit_salad);
+        println!("\nSorted fruit salad: {:?}", fruit_salad);
+    }
     
     // Iterate through the Vector and print each fruit.
     println!("\nFruits in the salad:");
@@ -111,5 +126,61 @@ mod tests {
         
         assert!(result);
         assert_eq!(fruits, vec!["apple", "banana"]);
+    }
+
+    #[test]
+    fn test_sort_fruits_basic() {
+        let mut fruits = vec!["cherry", "apple", "banana"];
+        sort_fruits(&mut fruits);
+        
+        assert_eq!(fruits, vec!["apple", "banana", "cherry"]);
+    }
+
+    #[test]
+    fn test_sort_fruits_already_sorted() {
+        let mut fruits = vec!["apple", "banana", "cherry"];
+        sort_fruits(&mut fruits);
+        
+        assert_eq!(fruits, vec!["apple", "banana", "cherry"]);
+    }
+
+    #[test]
+    fn test_sort_fruits_reverse_order() {
+        let mut fruits = vec!["cherry", "banana", "apple"];
+        sort_fruits(&mut fruits);
+        
+        assert_eq!(fruits, vec!["apple", "banana", "cherry"]);
+    }
+
+    #[test]
+    fn test_sort_fruits_with_duplicates() {
+        let mut fruits = vec!["cherry", "apple", "banana", "apple"];
+        sort_fruits(&mut fruits);
+        
+        assert_eq!(fruits, vec!["apple", "apple", "banana", "cherry"]);
+    }
+
+    #[test]
+    fn test_sort_fruits_single_element() {
+        let mut fruits = vec!["apple"];
+        sort_fruits(&mut fruits);
+        
+        assert_eq!(fruits, vec!["apple"]);
+    }
+
+    #[test]
+    fn test_sort_fruits_empty_vector() {
+        let mut fruits: Vec<&str> = vec![];
+        sort_fruits(&mut fruits);
+        
+        assert_eq!(fruits, vec![] as Vec<&str>);
+    }
+
+    #[test]
+    fn test_sort_fruits_with_special_characters() {
+        let mut fruits = vec!["mansikka", "apple", "elderberries"];
+        sort_fruits(&mut fruits);
+        
+        assert_eq!(fruits, vec!["apple", "elderberries", "mansikka"]);
     }
 }
