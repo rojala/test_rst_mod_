@@ -98,3 +98,6 @@ Check .github/workflow
 
 ### Customize fruit salad with a CLI
 [See](module2/cli-customize-fruit-salad/Readme.md) for more details.
+
+### Data Race
+[See](module2/data-race/Readme.md) for more details.
