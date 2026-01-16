@@ -1,4 +1,5 @@
 use clap::Parser;
+use std::collections::HashMap;
 
 #[derive(Parser, Debug)]
 #[command(name = "Fruit Vector Lab")]
@@ -11,6 +12,10 @@ struct Args {
     /// Sort fruits alphabetically
     #[arg(short, long)]
     sort: bool,
+    
+    /// Count occurrences of each fruit
+    #[arg(short, long)]
+    count: bool,
 }
 
 /// Function to remove a specific fruit from a vector
@@ -26,6 +31,15 @@ fn remove_fruit(vector: &mut Vec<&str>, fruit_name: &str) -> bool {
 /// Function to sort fruits alphabetically
 fn sort_fruits(vector: &mut Vec<&str>) {
     vector.sort();
+}
+
+/// Function to count occurrences of each fruit in a vector
+fn count_fruits<'a>(vector: &'a Vec<&'a str>) -> HashMap<&'a str, usize> {
+    let mut counts = HashMap::new();
+    for &fruit in vector {
+        *counts.entry(fruit).or_insert(0) += 1;
+    }
+    counts
 }
 
 fn main() {
@@ -52,6 +66,17 @@ fn main() {
     if args.sort {
         sort_fruits(&mut fruit_salad);
         println!("\nSorted fruit salad: {:?}", fruit_salad);
+    }
+    
+    // Count occurrences if --count flag is provided
+    if args.count {
+        let counts = count_fruits(&fruit_salad);
+        println!("\nFruit occurrences:");
+        let mut sorted_fruits: Vec<_> = counts.iter().collect();
+        sorted_fruits.sort_by_key(|a| a.0);
+        for (fruit, count) in sorted_fruits {
+            println!("  {}: {}", fruit, count);
+        }
     }
     
     // Iterate through the Vector and print each fruit.
@@ -182,5 +207,64 @@ mod tests {
         sort_fruits(&mut fruits);
         
         assert_eq!(fruits, vec!["apple", "elderberries", "mansikka"]);
+    }
+
+    #[test]
+    fn test_count_fruits_basic() {
+        let fruits = vec!["apple", "banana", "cherry"];
+        let counts = count_fruits(&fruits);
+        
+        assert_eq!(counts.len(), 3);
+        assert_eq!(counts.get("apple"), Some(&1));
+        assert_eq!(counts.get("banana"), Some(&1));
+        assert_eq!(counts.get("cherry"), Some(&1));
+    }
+
+    #[test]
+    fn test_count_fruits_with_duplicates() {
+        let fruits = vec!["apple", "banana", "apple", "cherry", "banana", "apple"];
+        let counts = count_fruits(&fruits);
+        
+        assert_eq!(counts.len(), 3);
+        assert_eq!(counts.get("apple"), Some(&3));
+        assert_eq!(counts.get("banana"), Some(&2));
+        assert_eq!(counts.get("cherry"), Some(&1));
+    }
+
+    #[test]
+    fn test_count_fruits_all_same() {
+        let fruits = vec!["apple", "apple", "apple", "apple"];
+        let counts = count_fruits(&fruits);
+        
+        assert_eq!(counts.len(), 1);
+        assert_eq!(counts.get("apple"), Some(&4));
+    }
+
+    #[test]
+    fn test_count_fruits_empty_vector() {
+        let fruits: Vec<&str> = vec![];
+        let counts = count_fruits(&fruits);
+        
+        assert_eq!(counts.len(), 0);
+    }
+
+    #[test]
+    fn test_count_fruits_single_element() {
+        let fruits = vec!["apple"];
+        let counts = count_fruits(&fruits);
+        
+        assert_eq!(counts.len(), 1);
+        assert_eq!(counts.get("apple"), Some(&1));
+    }
+
+    #[test]
+    fn test_count_fruits_many_duplicates() {
+        let fruits = vec!["apple", "apple", "banana", "banana", "banana", "cherry", "cherry", "cherry", "cherry"];
+        let counts = count_fruits(&fruits);
+        
+        assert_eq!(counts.len(), 3);
+        assert_eq!(counts.get("apple"), Some(&2));
+        assert_eq!(counts.get("banana"), Some(&3));
+        assert_eq!(counts.get("cherry"), Some(&4));
     }
 }

@@ -148,3 +148,62 @@ cargo run -- -f apple -s
 All 14 tests pass successfully! ✓
 
 ## 3. Can you extend the program to count the occurrences of each fruit in the Vector?
+
+**Solution Implemented:**
+
+The `count_fruits()` function counts the occurrences of each fruit in a vector using a HashMap:
+
+```rust
+fn count_fruits<'a>(vector: &'a Vec<&'a str>) -> HashMap<&'a str, usize> {
+    let mut counts = HashMap::new();
+    for &fruit in vector {
+        *counts.entry(fruit).or_insert(0) += 1;
+    }
+    counts
+}
+```
+
+**Usage with Clap:**
+Add the `--count` or `-c` flag to display fruit occurrences:
+
+```bash
+cargo run -- --fruit banana --count
+cargo run -- -f apple -c
+cargo run -- --fruit orange --sort --count
+```
+
+**How it works:**
+- Uses a `HashMap<&str, usize>` to store fruit names and their counts
+- Iterates through the vector and increments count for each fruit
+- Returns a HashMap with each unique fruit and its total occurrences
+- Can be combined with `--sort` and `--fruit` flags
+- Example output shows fruits sorted alphabetically with their counts
+
+### Test Coverage for Counting:
+
+1. **test_count_fruits_basic** - Verifies basic counting with no duplicates
+2. **test_count_fruits_with_duplicates** - Tests counting with multiple duplicate fruits
+3. **test_count_fruits_all_same** - Tests when all fruits are identical
+4. **test_count_fruits_empty_vector** - Tests counting with an empty vector
+5. **test_count_fruits_single_element** - Tests counting with one element
+6. **test_count_fruits_many_duplicates** - Tests with multiple duplicates of various counts
+
+### Combined Usage Examples:
+
+```bash
+# Remove, sort, and count
+cargo run -- --fruit banana --sort --count
+
+# Just count with short flags
+cargo run -- -f apple -c
+
+# View all options
+cargo run -- --help
+```
+
+All 20 tests pass successfully! ✓
+
+**Test Summary:**
+- 7 tests for `remove_fruit()` function
+- 7 tests for `sort_fruits()` function
+- 6 tests for `count_fruits()` function
