@@ -63,6 +63,52 @@ https://doc.rust-lang.org/std/vec/struct.Vec.html
 # Challenge Questions
 ## 1. Can you implement a function that takes a Vector and a fruit name as parameters and removes that specific fruit from the Vector?
 
+**Solution Implemented:**
+
+The `remove_fruit()` function takes a mutable Vector reference and a fruit name, then removes the first occurrence of that fruit:
+
+```rust
+fn remove_fruit(vector: &mut Vec<&str>, fruit_name: &str) -> bool {
+    if let Some(pos) = vector.iter().position(|&f| f == fruit_name) {
+        vector.remove(pos);
+        true
+    } else {
+        false
+    }
+}
+```
+
+**Usage with Clap:**
+The program uses Clap for CLI argument handling:
+```bash
+cargo run -- --fruit banana
+cargo run -- -f apple
+```
+
+**How it works:**
+- Uses `iter().position()` to find the fruit in the vector
+- Returns `true` if the fruit was found and removed, `false` otherwise
+- Clap parses the fruit name from command-line arguments
+- The function is called from main with the user-provided fruit name
+
+### Unit Tests
+
+Comprehensive unit tests have been implemented to verify the `remove_fruit()` function:
+
+```bash
+cargo test
+```
+
+**Test Coverage:**
+
+1. **test_remove_existing_fruit** - Verifies removing a fruit that exists in the vector
+2. **test_remove_first_occurrence_of_duplicate** - Ensures only the first occurrence is removed when duplicates exist
+3. **test_remove_nonexistent_fruit** - Confirms the function returns false when fruit is not found
+4. **test_remove_from_empty_vector** - Tests behavior with an empty vector
+5. **test_remove_from_single_element_vector** - Tests removing the only element in the vector
+6. **test_remove_first_fruit** - Verifies removing the first element
+7. **test_remove_last_fruit** - Verifies removing the last element
+
 ## 2. How would you modify the program to sort the fruits alphabetically?
 
 ## 3. Can you extend the program to count the occurrences of each fruit in the Vector?
