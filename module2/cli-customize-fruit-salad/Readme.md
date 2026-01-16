@@ -59,15 +59,35 @@ Observe the output, which will display a shuffled list of fruits in your fruit s
 ```
 
 ## Reflection Questions
-What is the role of the create_fruit_salad function in the lib.rs file?
+### What is the role of the create_fruit_salad function in the lib.rs file?
+The create_fruit_salad function takes a mutable vector of strings (fruit names) as input and returns a new vector with the same fruits but in random order. It uses the rand crate's shuffle method to randomly rearrange the fruits before returning them. This function essentially randomizes the order of fruits in a salad.
 
-How does the program read input from either a CSV file or command-line arguments?
+### How does the program read input from either a CSV file or command-line arguments?
+The program reads input using the `clap` crate for command-line argument parsing:
 
-What is the purpose of the Opts struct in main.rs?
+1. **Argument Parsing**: The `Opts` struct defines two optional input sources:
+   - `fruits`: A string of comma-separated fruit names (passed via `--fruits` flag)
+   - `csvfile`: A path to a CSV file (positional argument)
+
+2. **Input Processing**: In the `main()` function, a `match` statement checks which input source is available:
+   - **CSV File**: If `csvfile` is provided, the program reads the file using `std::fs::read_to_string()` and parses it with `csv_to_vec()`
+   - **Command-line Arguments**: If no CSV file is provided, it uses the `--fruits` argument and splits it by commas
+   - **Default**: If neither is provided, it defaults to an empty string
+
+3. **Parsing Helper**: The `csv_to_vec()` function splits the input string by commas, trims whitespace, and collects the results into a vector of strings.
+
+4. **Usage Examples**:
+   - `cargo run -- fruits.csv` - reads from CSV file
+   - `cargo run -- --fruits "apple, pear"` - reads from command-line arguments
+
+### What is the purpose of the Opts struct in main.rs?
+1. **Argument Parsing**: The `Opts` struct defines two optional input sources:
+   - `fruits`: A string of comma-separated fruit names (passed via `--fruits` flag)
+   - `csvfile`: A path to a CSV file (positional argument)
 
 ## Challenge Questions
-How would you modify the program to allow for customizable "salad dressing," such as adding a random syrup or spice to the fruit salad?
+### How would you modify the program to allow for customizable "salad dressing," such as adding a random syrup or spice to the fruit salad?
 
-Can you extend the application to output the resulting fruit salad to a new CSV file?
+### Can you extend the application to output the resulting fruit salad to a new CSV file?
 
-Can you adapt this code for different kinds of data, such as a list of books or movies?
+### Can you adapt this code for different kinds of data, such as a list of books or movies?
