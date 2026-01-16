@@ -42,16 +42,27 @@ This lab is designed to help you understand Rust's Vec (vector) data structure a
         mansikka
     ```
 
-Reflection Questions
-How does the push method work in a Vector in Rust?
+# Reflection Questions
+## 1. How does the push method work in a Vector in Rust?
+The push method on a Rust Vec<T> appends a new element to the end of the vector, taking ownership of the value and growing the vector’s length by one. It runs in amortized constant time and may trigger a reallocation if the vector’s capacity is full.
 
-What does the pop method do, and what does it return?
+https://doc.rust-lang.org/std/vec/struct.Vec.html
 
-Why is it necessary to declare the Vector as mutable for these operations?
 
-Challenge Questions
-Can you implement a function that takes a Vector and a fruit name as parameters and removes that specific fruit from the Vector?
+## 2. What does the pop method do, and what does it return?
+Vec::pop removes the last element from a vector and returns it as an Option<T>. If the vector has at least one element, you get Some(value); if it’s empty, you get None.
 
-How would you modify the program to sort the fruits alphabetically?
+https://www.slingacademy.com/article/adding-and-removing-elements-from-a-vec-t-with-push-pop-insert-and-remove/?utm_source=copilot.com#google_vignette
 
-Can you extend the program to count the occurrences of each fruit in the Vector?
+## 3. Why is it necessary to declare the Vector as mutable for these operations?
+Because push, pop, and similar methods change the contents or structure of the vector, Rust requires the vector to be declared as mut so the compiler knows you intend to modify it. This follows Rust’s core rule: you cannot mutate data through an immutable binding.
+
+https://doc.rust-lang.org/std/vec/struct.Vec.html
+
+
+# Challenge Questions
+## 1. Can you implement a function that takes a Vector and a fruit name as parameters and removes that specific fruit from the Vector?
+
+## 2. How would you modify the program to sort the fruits alphabetically?
+
+## 3. Can you extend the program to count the occurrences of each fruit in the Vector?
