@@ -94,4 +94,4 @@ Check .github/workflow
 
 ## Module 2
 ### Mutable fruit salad
-[See](module2/mutable-fruit-salad/Readme.md) for more details.
+[See](module2/fruit_vector_lab/Readme.md) for more details.
