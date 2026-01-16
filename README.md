@@ -86,7 +86,12 @@ Check .github/workflow
 [See](module1/Readme.md) for more details.
 
 ### Final week-reflection
-[See](final-week-reflection/Readme.md) for more details.
+[See](module1/final-week-reflection/Readme.md) for more details.
 
 ### Final challenge
-[See](final_challenge_ufc/Readme.md) for more details.
+[See](module1/final_challenge_ufc/Readme.md) for more details.
+
+
+## Module 2
+### Mutable fruit salad
+[See](module2/mutable-fruit-salad/Readme.md) for more details.
