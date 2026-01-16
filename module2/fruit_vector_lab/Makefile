@@ -19,7 +19,7 @@ test-quiet:
 	cargo test --quiet
 
 run:
-	cargo run
+	cargo run -- --help
 
 build-release:
 	cargo build --release

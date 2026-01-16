@@ -8,11 +8,11 @@ struct Args {
     /// The fruit name to remove from the vector
     #[arg(short, long)]
     fruit: String,
-    
+
     /// Sort fruits alphabetically
     #[arg(short, long)]
     sort: bool,
-    
+
     /// Count occurrences of each fruit
     #[arg(short, long)]
     count: bool,
@@ -61,13 +61,13 @@ fn main() {
     }
 
     println!("\nModified fruit salad: {:?}", fruit_salad);
-    
+
     // Sort fruits alphabetically if --sort flag is provided
     if args.sort {
         sort_fruits(&mut fruit_salad);
         println!("\nSorted fruit salad: {:?}", fruit_salad);
     }
-    
+
     // Count occurrences if --count flag is provided
     if args.count {
         let counts = count_fruits(&fruit_salad);
@@ -78,7 +78,7 @@ fn main() {
             println!("  {}: {}", fruit, count);
         }
     }
-    
+
     // Iterate through the Vector and print each fruit.
     println!("\nFruits in the salad:");
     for fruit in &fruit_salad {
@@ -94,7 +94,7 @@ mod tests {
     fn test_remove_existing_fruit() {
         let mut fruits = vec!["apple", "banana", "cherry"];
         let result = remove_fruit(&mut fruits, "banana");
-        
+
         assert!(result);
         assert_eq!(fruits, vec!["apple", "cherry"]);
     }
@@ -103,7 +103,7 @@ mod tests {
     fn test_remove_first_occurrence_of_duplicate() {
         let mut fruits = vec!["apple", "banana", "banana", "cherry"];
         let result = remove_fruit(&mut fruits, "banana");
-        
+
         assert!(result);
         assert_eq!(fruits, vec!["apple", "banana", "cherry"]);
     }
@@ -112,7 +112,7 @@ mod tests {
     fn test_remove_nonexistent_fruit() {
         let mut fruits = vec!["apple", "banana", "cherry"];
         let result = remove_fruit(&mut fruits, "orange");
-        
+
         assert!(!result);
         assert_eq!(fruits, vec!["apple", "banana", "cherry"]);
     }
@@ -121,7 +121,7 @@ mod tests {
     fn test_remove_from_empty_vector() {
         let mut fruits: Vec<&str> = vec![];
         let result = remove_fruit(&mut fruits, "apple");
-        
+
         assert!(!result);
         assert_eq!(fruits, vec![] as Vec<&str>);
     }
@@ -130,7 +130,7 @@ mod tests {
     fn test_remove_from_single_element_vector() {
         let mut fruits = vec!["apple"];
         let result = remove_fruit(&mut fruits, "apple");
-        
+
         assert!(result);
         assert_eq!(fruits, vec![] as Vec<&str>);
     }
@@ -139,7 +139,7 @@ mod tests {
     fn test_remove_first_fruit() {
         let mut fruits = vec!["apple", "banana", "cherry"];
         let result = remove_fruit(&mut fruits, "apple");
-        
+
         assert!(result);
         assert_eq!(fruits, vec!["banana", "cherry"]);
     }
@@ -148,7 +148,7 @@ mod tests {
     fn test_remove_last_fruit() {
         let mut fruits = vec!["apple", "banana", "cherry"];
         let result = remove_fruit(&mut fruits, "cherry");
-        
+
         assert!(result);
         assert_eq!(fruits, vec!["apple", "banana"]);
     }
@@ -157,7 +157,7 @@ mod tests {
     fn test_sort_fruits_basic() {
         let mut fruits = vec!["cherry", "apple", "banana"];
         sort_fruits(&mut fruits);
-        
+
         assert_eq!(fruits, vec!["apple", "banana", "cherry"]);
     }
 
@@ -165,7 +165,7 @@ mod tests {
     fn test_sort_fruits_already_sorted() {
         let mut fruits = vec!["apple", "banana", "cherry"];
         sort_fruits(&mut fruits);
-        
+
         assert_eq!(fruits, vec!["apple", "banana", "cherry"]);
     }
 
@@ -173,7 +173,7 @@ mod tests {
     fn test_sort_fruits_reverse_order() {
         let mut fruits = vec!["cherry", "banana", "apple"];
         sort_fruits(&mut fruits);
-        
+
         assert_eq!(fruits, vec!["apple", "banana", "cherry"]);
     }
 
@@ -181,7 +181,7 @@ mod tests {
     fn test_sort_fruits_with_duplicates() {
         let mut fruits = vec!["cherry", "apple", "banana", "apple"];
         sort_fruits(&mut fruits);
-        
+
         assert_eq!(fruits, vec!["apple", "apple", "banana", "cherry"]);
     }
 
@@ -189,7 +189,7 @@ mod tests {
     fn test_sort_fruits_single_element() {
         let mut fruits = vec!["apple"];
         sort_fruits(&mut fruits);
-        
+
         assert_eq!(fruits, vec!["apple"]);
     }
 
@@ -197,7 +197,7 @@ mod tests {
     fn test_sort_fruits_empty_vector() {
         let mut fruits: Vec<&str> = vec![];
         sort_fruits(&mut fruits);
-        
+
         assert_eq!(fruits, vec![] as Vec<&str>);
     }
 
@@ -205,7 +205,7 @@ mod tests {
     fn test_sort_fruits_with_special_characters() {
         let mut fruits = vec!["mansikka", "apple", "elderberries"];
         sort_fruits(&mut fruits);
-        
+
         assert_eq!(fruits, vec!["apple", "elderberries", "mansikka"]);
     }
 
@@ -213,7 +213,7 @@ mod tests {
     fn test_count_fruits_basic() {
         let fruits = vec!["apple", "banana", "cherry"];
         let counts = count_fruits(&fruits);
-        
+
         assert_eq!(counts.len(), 3);
         assert_eq!(counts.get("apple"), Some(&1));
         assert_eq!(counts.get("banana"), Some(&1));
@@ -224,7 +224,7 @@ mod tests {
     fn test_count_fruits_with_duplicates() {
         let fruits = vec!["apple", "banana", "apple", "cherry", "banana", "apple"];
         let counts = count_fruits(&fruits);
-        
+
         assert_eq!(counts.len(), 3);
         assert_eq!(counts.get("apple"), Some(&3));
         assert_eq!(counts.get("banana"), Some(&2));
@@ -235,7 +235,7 @@ mod tests {
     fn test_count_fruits_all_same() {
         let fruits = vec!["apple", "apple", "apple", "apple"];
         let counts = count_fruits(&fruits);
-        
+
         assert_eq!(counts.len(), 1);
         assert_eq!(counts.get("apple"), Some(&4));
     }
@@ -244,7 +244,7 @@ mod tests {
     fn test_count_fruits_empty_vector() {
         let fruits: Vec<&str> = vec![];
         let counts = count_fruits(&fruits);
-        
+
         assert_eq!(counts.len(), 0);
     }
 
@@ -252,16 +252,18 @@ mod tests {
     fn test_count_fruits_single_element() {
         let fruits = vec!["apple"];
         let counts = count_fruits(&fruits);
-        
+
         assert_eq!(counts.len(), 1);
         assert_eq!(counts.get("apple"), Some(&1));
     }
 
     #[test]
     fn test_count_fruits_many_duplicates() {
-        let fruits = vec!["apple", "apple", "banana", "banana", "banana", "cherry", "cherry", "cherry", "cherry"];
+        let fruits = vec![
+            "apple", "apple", "banana", "banana", "banana", "cherry", "cherry", "cherry", "cherry",
+        ];
         let counts = count_fruits(&fruits);
-        
+
         assert_eq!(counts.len(), 3);
         assert_eq!(counts.get("apple"), Some(&2));
         assert_eq!(counts.get("banana"), Some(&3));

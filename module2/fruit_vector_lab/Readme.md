@@ -145,8 +145,6 @@ cargo run -- -f apple -s
 6. **test_sort_fruits_empty_vector** - Tests sorting with an empty vector
 7. **test_sort_fruits_with_special_characters** - Tests with multi-character fruit names
 
-All 14 tests pass successfully! ✓
-
 ## 3. Can you extend the program to count the occurrences of each fruit in the Vector?
 
 **Solution Implemented:**
@@ -200,8 +198,6 @@ cargo run -- -f apple -c
 # View all options
 cargo run -- --help
 ```
-
-All 20 tests pass successfully! ✓
 
 **Test Summary:**
 - 7 tests for `remove_fruit()` function
