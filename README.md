@@ -101,3 +101,7 @@ Check .github/workflow
 
 ### Data Race
 [See](module2/data-race/Readme.md) for more details.
+
+
+### Meet Safe and Unsafe
+[See](module2/meet_safe_and_unsafe/Readme.md) for more details.
