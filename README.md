@@ -108,3 +108,6 @@ Check .github/workflow
 
 ### Ownership and lifetimes
 [See](module2/ownership_and_lifetimes/Readme.md) for more details.
+
+### Ownership-based resource management
+[See](module2/ownership-based_resource_management/Readme.md) for more details.
