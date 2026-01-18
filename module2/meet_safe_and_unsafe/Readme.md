@@ -1,5 +1,5 @@
 # Meet Safe and Unsafe
-(https://doc.rust-lang.org/nomicon/meet-safe-and-unsafe.html)[https://doc.rust-lang.org/nomicon/meet-safe-and-unsafe.html]
+[https://doc.rust-lang.org/nomicon/meet-safe-and-unsafe.html](https://doc.rust-lang.org/nomicon/meet-safe-and-unsafe.html)
 
 ## Reflection Questions:
 

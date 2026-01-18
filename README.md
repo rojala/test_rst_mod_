@@ -105,3 +105,6 @@ Check .github/workflow
 
 ### Meet Safe and Unsafe
 [See](module2/meet_safe_and_unsafe/Readme.md) for more details.
+
+### Ownership and lifetimes
+[See](module2/ownership_and_lifetimes/Readme.md) for more details.
