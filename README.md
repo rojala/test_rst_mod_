@@ -111,3 +111,6 @@ Check .github/workflow
 
 ### Ownership-based resource management
 [See](module2/ownership-based_resource_management/Readme.md) for more details.
+
+### Lessons reflection / module 2
+[See](module2/lessons-reflection-2/Readme.md) for more
