@@ -124,3 +124,6 @@ Check .github/workflow
 
 ### External GitHub Lab: Creating a Decoder Ring: A Practical Guide
 [See](module2/decoder_ring/Readme.md) for more details.
+
+### Lessons reflection / module 2 2nd
+[See](module2/lessons-reflection-2-2nd/Readme.md) for more details.
