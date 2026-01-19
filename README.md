@@ -120,3 +120,7 @@ Check .github/workflow
 
 ### Rust Software Security: A Current State Assessment
 [See](module2/security_current_state_analysis/Readme.md) for more details.
+
+
+### External GitHub Lab: Creating a Decoder Ring: A Practical Guide
+[See](module2/decoder_ring/Readme.md) for more details.
