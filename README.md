@@ -114,3 +114,6 @@ Check .github/workflow
 
 ### Lessons reflection / module 2
 [See](module2/lessons-reflection-2/Readme.md) for more
+
+### RustCrypto: Hashes
+[See](module2/rustcrypto_hashes/Readme.md) for more details.
