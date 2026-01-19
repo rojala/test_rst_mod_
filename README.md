@@ -117,3 +117,6 @@ Check .github/workflow
 
 ### RustCrypto: Hashes
 [See](module2/rustcrypto_hashes/Readme.md) for more details.
+
+### Rust Software Security: A Current State Assessment
+[See](module2/security_current_state_analysis/Readme.md) for more details.
