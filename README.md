@@ -127,3 +127,6 @@ Check .github/workflow
 
 ### Lessons reflection / module 2 2nd
 [See](module2/lessons-reflection-2-2nd/Readme.md) for more details.
+
+### Concurrency and Parallelism
+[See](module2/concurrency_n_parallelism/Readme.md) for more details.
