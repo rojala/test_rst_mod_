@@ -130,3 +130,6 @@ Check .github/workflow
 
 ### Concurrency and Parallelism
 [See](module2/concurrency_n_parallelism/Readme.md) for more details.
+
+### Data Races and Race Conditions
+[See](module2/data_races_and_race_conditions/Readme.md) for more details.
