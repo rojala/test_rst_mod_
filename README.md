@@ -133,3 +133,7 @@ Check .github/workflow
 
 ### Data Races and Race Conditions
 [See](module2/data_races_and_race_conditions/Readme.md) for more details.
+
+### Send and Sync
+[See](module2/send_and_sync/Readme.md) for more details.
+
