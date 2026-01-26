@@ -137,3 +137,5 @@ Check .github/workflow
 ### Send and Sync
 [See](module2/send_and_sync/Readme.md) for more details.
 
+### Atomics
+[See](module2/atomics/Readme.md) for more details.
