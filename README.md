@@ -139,3 +139,6 @@ Check .github/workflow
 
 ### Atomics
 [See](module2/atomics/Readme.md) for more details.
+
+### Distributed Computing and Concurrency
+[See](module2/distributed_computing_and_concurrency/Readme.md) for more details.
