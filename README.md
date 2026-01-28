@@ -142,3 +142,6 @@ Check .github/workflow
 
 ### Distributed Computing and Concurrency
 [See](module2/distributed_computing_and_concurrency/Readme.md) for more details.
+
+### Challenges and Opportunities in Distributed
+[See](module2/challenges_and_opportunities_in_distributed/Readme.md) for more details.
