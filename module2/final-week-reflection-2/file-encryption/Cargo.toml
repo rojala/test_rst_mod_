@@ -1,0 +1,11 @@
+[package]
+name = "file-encryption"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+# For production AES encryption, uncomment:
+# aes = "0.8"
+# block-modes = "0.9"
+# sha2 = "0.10"
+# rand = "0.8"

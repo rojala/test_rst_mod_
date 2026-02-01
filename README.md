@@ -149,3 +149,5 @@ Check .github/workflow
 ### Lab: Dining Philosophers
 [See](module2/dining_philosophers/Readme.md) for more details.
 
+### Week2 final week-reflection
+[See](module2/final-week-reflection-2/Readme.md) for more details.

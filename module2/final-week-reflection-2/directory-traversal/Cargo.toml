@@ -1,0 +1,9 @@
+[package]
+name = "directory-traversal"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+# For parallel version, uncomment:
+# rayon = "1.7"
+# walkdir = "2.3"
