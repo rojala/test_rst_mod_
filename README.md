@@ -145,3 +145,7 @@ Check .github/workflow
 
 ### Challenges and Opportunities in Distributed
 [See](module2/challenges_and_opportunities_in_distributed/Readme.md) for more details.
+
+### Lab: Dining Philosophers
+[See](module2/dining_philosophers/Readme.md) for more details.
+
