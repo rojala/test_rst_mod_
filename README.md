@@ -151,3 +151,6 @@ Check .github/workflow
 
 ### Week2 final week-reflection
 [See](module2/final-week-reflection-2/Readme.md) for more details.
+
+### Final Lesson Reflection
+[See](module2/final-lesson-reflection/Readme.md) for more details.
