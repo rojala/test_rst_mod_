@@ -154,3 +154,6 @@ Check .github/workflow
 
 ### Final Lesson Reflection
 [See](module2/final-lesson-reflection/Readme.md) for more details.
+
+### Rust Playground Rayon Challenge
+[See](module2/rust_playground_rayon_challenge/Readme.md) for more details.
