@@ -157,3 +157,7 @@ Check .github/workflow
 
 ### Rust Playground Rayon Challenge
 [See](module2/rust_playground_rayon_challenge/Readme.md) for more details.
+
+## Module 3
+### CSV Write
+[see](module3/additional-rust-data-engineering-labs/Readme.md) for more details.
