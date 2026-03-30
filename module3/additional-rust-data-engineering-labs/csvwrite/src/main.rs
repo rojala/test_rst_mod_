@@ -1,6 +1,8 @@
-use csv::{Reader, Writer};
+use csv::Writer;
+use csvwrite::{process_csv_with_buffers, DiscountOptions};
 use std::env;
 use std::error::Error;
+use std::fs::File;
 
 fn orginal() -> Result<(), Box<dyn Error>> {
     // Create a list of fruits and their prices
@@ -28,40 +30,91 @@ fn orginal() -> Result<(), Box<dyn Error>> {
     Ok(())
 }
 
-fn discounted(clamp: bool) -> Result<(), Box<dyn Error>> {
-    let mut rdr = Reader::from_path("products.csv")?;
-    let mut wtr = Writer::from_path("discounted_products.csv")?;
+fn discounted(options: &DiscountOptions) -> Result<(), Box<dyn Error>> {
+    let input = File::open("products.csv")?;
+    let output = File::create("discounted_products.csv")?;
+    let summary = process_csv_with_buffers(input, output, options, 8 * 1024, 8 * 1024)?;
 
-    wtr.write_record(["Product", "Price"])?;
+    println!("Processed {} products.", summary.total_items);
+    println!("Discounted products: {}.", summary.discounted_items);
+    println!("Total original value: ${:.2}", summary.total_original);
+    println!("Total discounted value: ${:.2}", summary.total_final);
+    println!("Total savings: ${:.2}", summary.total_savings);
+    println!("Threads used: {}", options.thread_count);
+    println!("Wrote output to discounted_products.csv");
 
-    for result in rdr.records() {
-        let record = result?;
-        let product_name = record.get(0).unwrap_or("");
-        let original_price: f64 = record.get(1).unwrap_or("0").parse()?;
-        let discounted_price = original_price * 0.9;
+    Ok(())
+}
 
-        let final_price = if clamp {
-            discounted_price.clamp(0.0, original_price)
-        } else {
-            discounted_price
-        };
+fn parse_options(args: &[String]) -> Result<(bool, DiscountOptions), Box<dyn Error>> {
+    let mut run_original = false;
+    let mut options = DiscountOptions::default();
 
-        wtr.write_record([product_name, &format!("{final_price:.2}")])?;
+    let mut i = 1;
+    while i < args.len() {
+        match args[i].as_str() {
+            "--original" => {
+                run_original = true;
+                i += 1;
+            }
+            "--clamp" => {
+                options.clamp = true;
+                i += 1;
+            }
+            "--discount" => {
+                if i + 1 >= args.len() {
+                    return Err("Missing value for --discount".into());
+                }
+                options.discount_percent = args[i + 1].parse()?;
+                i += 2;
+            }
+            "--extra-discount" => {
+                if i + 1 >= args.len() {
+                    return Err("Missing value for --extra-discount".into());
+                }
+                options.extra_discount_percent = args[i + 1].parse()?;
+                i += 2;
+            }
+            "--product" => {
+                if i + 1 >= args.len() {
+                    return Err("Missing product name for --product".into());
+                }
+                options.product_filter = Some(args[i + 1].clone());
+                i += 2;
+            }
+            "--threads" => {
+                if i + 1 >= args.len() {
+                    return Err("Missing value for --threads".into());
+                }
+                options.thread_count = args[i + 1].parse()?;
+                if options.thread_count == 0 {
+                    return Err("--threads must be greater than 0".into());
+                }
+                i += 2;
+            }
+            "--help" | "-h" => {
+                println!(
+                    "Usage: csvwrite [--original] [--clamp] [--discount <percent>] [--extra-discount <percent>] [--product <name>] [--threads <count>]"
+                );
+                std::process::exit(0);
+            }
+            unknown => {
+                return Err(format!("Unknown argument: {unknown}").into());
+            }
+        }
     }
 
-    wtr.flush()?;
-    Ok(())
+    Ok((run_original, options))
 }
 
 fn main() -> Result<(), Box<dyn Error>> {
     let args: Vec<String> = env::args().collect();
-    let run_original = args.iter().any(|arg| arg == "--original");
-    let clamp = args.iter().any(|arg| arg == "--clamp");
+    let (run_original, options) = parse_options(&args)?;
 
     if run_original {
         orginal()?;
     } else {
-        discounted(clamp)?;
+        discounted(&options)?;
     }
 
     Ok(())
