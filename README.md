@@ -165,3 +165,6 @@ Check .github/workflow
 ### Rust CSV Cookbook questions
 [see](module3/rust_csw_cookbook/Readme.md) for mor details.
 
+### Apache Parquet Official Native Rust Implementation
+[see](module3/parquet_file/Readme.md) for mor details.
+
