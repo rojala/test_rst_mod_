@@ -168,3 +168,6 @@ Check .github/workflow
 ### Apache Parquet Official Native Rust Implementation
 [see](module3/parquet_file/Readme.md) for mor details.
 
+### Lesson Reflection
+[see](module3/lesson_reflection/Readme.md) for more details.
+
