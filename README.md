@@ -161,3 +161,7 @@ Check .github/workflow
 ## Module 3
 ### CSV Write
 [see](module3/additional-rust-data-engineering-labs/Readme.md) for more details.
+
+### Rust CSV Cookbook questions
+[see](module3/rust_csw_cookbook/Readme.md) for mor details.
+
