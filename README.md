@@ -171,3 +171,6 @@ Check .github/workflow
 ### Lesson Reflection
 [see](module3/lesson_reflection/Readme.md) for more details.
 
+### Exploring Notebooks with Python Pandas and Jupyter
+[see](module3/exploring_jupyter/Readme.md) for more details.
+
