@@ -176,3 +176,6 @@ Check .github/workflow
 
 ### External GitHub Lab: Using Polars DataFrame CLI
 [see](module3/polaris_dataframe/Readme.md) for more details.
+
+### Polars is a highly performant DataFrame library for manipulating structured data
+[see](module3/polaris/Readme.md) for more details.
