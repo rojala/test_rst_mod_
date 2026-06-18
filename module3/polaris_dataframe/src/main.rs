@@ -1,6 +1,5 @@
 //command-line tool that reads a CSV file and prints the contents of the file as a DataFrame
 use clap::Parser;
-use polars::prelude::*;
 const CSV_FILE: &str = "src/data/global-life-expt-2022.csv";
 
 #[derive(Parser)]
@@ -39,12 +38,24 @@ enum Commands {
     Sort {
         #[clap(long, default_value = CSV_FILE)]
         path: String,
-        #[clap(long, default_value = "2020")]
-        year: String,
+        #[clap(long = "sort-by", alias = "year", default_value = "2020")]
+        sort_by: String,
         #[clap(long, default_value = "10")]
         rows: usize,
         #[clap(long, default_value = "true")]
         order: bool,
+    },
+    Filter {
+        #[clap(long, default_value = CSV_FILE)]
+        path: String,
+        #[clap(long = "by-col", default_value = "2020")]
+        by_col: String,
+        #[clap(long, default_value = "gt")]
+        op: String,
+        #[clap(long)]
+        value: String,
+        #[clap(long, default_value = "10")]
+        rows: usize,
     },
 }
 
@@ -69,23 +80,40 @@ fn main() {
         }
         Some(Commands::Sort {
             path,
-            year,
+            sort_by,
             rows,
             order,
         }) => {
             let df = polarsdf::read_csv(&path);
-            let country_column_name = "Country Name";
-            //select the country column and the year string passed in and return a new dataframe
-            let vs = df.select_series([country_column_name, &year]).unwrap();
-            //convert the Vec<Series> to a DataFrame
-            let df2 = DataFrame::new(vs).unwrap();
-            //drop any rows with null values and return a new dataframe
-            let df2: DataFrame = df2.drop_nulls(None).unwrap();
-            //sort the dataframe by the year column and by order passed in
-            let df2 = df2.sort([&year], order).unwrap();
+            //sort the dataframe by the requested column and order
+            let df2 = match polarsdf::sort_by_column(&df, &sort_by, order) {
+                Ok(df2) => df2,
+                Err(error) => {
+                    eprintln!("{error}");
+                    return;
+                }
+            };
 
             //print the first "rows" of the dataframe
             println!("{:?}", df2.head(Some(rows)));
+        }
+        Some(Commands::Filter {
+            path,
+            by_col,
+            op,
+            value,
+            rows,
+        }) => {
+            let df = polarsdf::read_csv(&path);
+            let filtered_df = match polarsdf::filter_by_condition(&df, &by_col, &op, &value) {
+                Ok(filtered_df) => filtered_df,
+                Err(error) => {
+                    eprintln!("{error}");
+                    return;
+                }
+            };
+
+            println!("{:?}", filtered_df.head(Some(rows)));
         }
         None => {
             println!("No subcommand was used");
