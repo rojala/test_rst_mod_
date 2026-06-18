@@ -174,3 +174,5 @@ Check .github/workflow
 ### Exploring Notebooks with Python Pandas and Jupyter
 [see](module3/exploring_jupyter/Readme.md) for more details.
 
+### External GitHub Lab: Using Polars DataFrame CLI
+[see](module3/polaris_dataframe/Readme.md) for more details.
