@@ -179,3 +179,6 @@ Check .github/workflow
 
 ### Polars is a highly performant DataFrame library for manipulating structured data
 [see](module3/polaris/Readme.md) for more details.
+
+### Lesson Reflection
+[see](module3/polaris/LessonReflection.md) for more details.
