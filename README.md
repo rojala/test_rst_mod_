@@ -188,3 +188,6 @@ Check .github/workflow
 
 ### Chapter 2-Week 2 (Up and Running with Cloud Computing)
 [see](module3/chapter2_week2/Readme.md) for more details.
+
+### Chapter 3-Week 3 Virtualization and Containers
+[see](module3/chapter3_week3/Readme.md) for more details.
