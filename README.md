@@ -191,3 +191,6 @@ Check .github/workflow
 
 ### Chapter 3-Week 3 Virtualization and Containers
 [see](module3/chapter3_week3/Readme.md) for more details.
+
+### What is the AWS SDK for Rust?
+[see](module3/aws_sdk_for_rust/Readme.md) for more details.
