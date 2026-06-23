@@ -185,3 +185,6 @@ Check .github/workflow
 
 ### Lab: Axum Greedy Coin Microservice
 [see](module3/lab_axum/Readme.md) for more details.
+
+### Chapter 2-Week 2 (Up and Running with Cloud Computing)
+[see](module3/chapter2_week2/Readme.md) for more details.
