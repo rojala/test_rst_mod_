@@ -182,3 +182,6 @@ Check .github/workflow
 
 ### Lesson Reflection
 [see](module3/polaris/LessonReflection.md) for more details.
+
+### Lab: Axum Greedy Coin Microservice
+[see](module3/lab_axum/Readme.md) for more details.
