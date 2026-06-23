@@ -1,0 +1,10 @@
+[package]
+name = "parquet_cli"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+parquet = "50"
+arrow = "50"
+clap = { version = "4.0", features = ["derive"] }
+serde = { version = "1.0", features = ["derive"] }

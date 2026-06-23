@@ -194,3 +194,6 @@ Check .github/workflow
 
 ### What is the AWS SDK for Rust?
 [see](module3/aws_sdk_for_rust/Readme.md) for more details.
+
+### Final reflection
+[see](module3/final_reflection/Readme.md) for more details.

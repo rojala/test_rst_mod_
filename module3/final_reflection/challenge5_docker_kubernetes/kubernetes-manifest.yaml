@@ -1,0 +1,92 @@
+---
+# Kubernetes Deployment for Rust Web Service
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rust-web-service
+  labels:
+    app: rust-web-service
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: rust-web-service
+  template:
+    metadata:
+      labels:
+        app: rust-web-service
+    spec:
+      containers:
+      - name: rust-web-service
+        image: rust-web-service:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: http
+          containerPort: 3000
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 3000
+          initialDelaySeconds: 10
+          periodSeconds: 30
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 3000
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
+        env:
+        - name: RUST_LOG
+          value: "info"
+
+---
+# Kubernetes Service to expose the deployment
+apiVersion: v1
+kind: Service
+metadata:
+  name: rust-web-service
+  labels:
+    app: rust-web-service
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 3000
+    protocol: TCP
+    name: http
+  selector:
+    app: rust-web-service
+
+---
+# HorizontalPodAutoscaler for automatic scaling
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: rust-web-service-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: rust-web-service
+  minReplicas: 2
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 70
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: 80
